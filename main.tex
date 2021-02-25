@@ -17,12 +17,13 @@
 
 \usepackage[hyphens]{url}
 \usepackage{hyperref}
-\usepackage{subfig}
+%\usepackage{subfig}
 \usepackage{hhline}
 \usepackage{amsmath}
 \usepackage{color}
 \usepackage{multirow}
 \usepackage{siunitx}
+\usepackage{subcaption}
 \sisetup{
     input-decimal-markers = .,input-ignore = {,},table-number-alignment = right,
     group-separator={,}, group-four-digits = true
@@ -74,15 +75,16 @@
 \tikzstyle{arrow} = [thick,->,>=stealth]
 
 
-\title{Example Template}
-\author{Charles Bae}
+\title{---}
+\author{Zo{\"e} Richter}
 \department{Nuclear, Plasma, Radiological Engineering}
-\schools{B.S., University of Illinois - Urbana Champaign, 2017}
+\schools{B.S., University of Illinois - Urbana Champaign, 2018}
 \msthesis
 \advisor{Kathryn D. Huff}
-\degreeyear{2018}
-\committee{Assistant Professor Kathryn D. Huff, Adviser \\ Professor Segundo Lector }
+\degreeyear{2021}
+\committee{---}
 
+%% Template created by Charles Bae, 2018
 
 \begin{document}
 \maketitle
@@ -92,7 +94,7 @@
 %% Note that ProQuest truncates their abstracts at 350 words.
 \begin{abstract}
 
-Abstract.
+
 
 \end{abstract}
 
@@ -128,11 +130,23 @@ Acks.
 \chapter{Introduction}
 \input{introduction}
 
+\chapter{Literature Review}
+\input{litreview}
+
+\chapter{Methodology}
+\input{methods}
+
+\chapter{Results}
+\input{results}
+
+\chapter{Conclusion}
+\input{conclusion}
+
 \chapter*{Appendix}
 \input{appendix}
 
 \backmatter
-
+\nocite{*}
 \bibliographystyle{apalike}
 \bibliography{bibliography}
 
