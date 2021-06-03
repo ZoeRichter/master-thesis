@@ -1,18 +1,20 @@
+There are two reactor models created - Sangamon200, a 200MWth design inspired by the PBMR and Xe-100.  Using data from the Sangamon200 model, a scaled down reactor called the Sangamon20 was created.  Both are UCO-pebble fueled, helium cooled microreactors.
+
 \input{param-table1}
 
-All neutronics simulations are performed using Serpent2.0 \cite{leppanenjaakko_serpent_2015} .  Pebbles are individually modeled, with locations generated using Serpent2.0's particle dispersal routine (***should I go into more detail on the dispersal routine?***).  Each pebble in the full-core model has the TRISO-filled "fueled-core" homogenized by volume.
-\\
+All simulations were performed using Serpent 2.0 \cite{leppanenjaakko_serpent_2015}.  Pebble and TRISO particle locations are both determined using the Serpent 2.0 particle dispersal routine.  In Serpent 2.0, the particle dispersal algorithm first takes the number of particles, defined by the user directly, or indirectly using $\eta_{pf}$, the packing fraction, which is simply the total volume of particles in a space divided by the volume of that space.  The dispersal routine also has the user define the particle radius, and the size and shape of the volume the particles are housed in.  The routine first randomly determines a single point for each particle that is contained in the volume.  Then, the routine uses the 'growth factor' and 'shake factor' - both described as fractions of the particle radius, and iterates.  Each iteration, the size of the point's radius increases by the growth factor.  Additionally, the center will move in a random direction a distance equal to the shake factor.  If the particle growth would cause the particle to overlap with another particle or leave the volume, it doesn't get larger that cycle.  Similarly, if the center's movement would cause overlap or leaving the containing volume, it doesn't move.  The dispersal routine iterates until all particles are to their full size, contained in the volume, and do not overlap with any other particles.  The routine generates an output file, where each line gives the coordinates of the particle center in x,y,z coordinates, the particle radius, and the name of the particle type, to associate it with the pbed card later.
+\\ \\
+
+In order to determine isotopic compositions in the pebbles, a Serpent burnup simulation of a single pebble is run in burnup steps of 180, 360, 540, 720, 900, and 1080 days - to represent 6, 6-month passes.  A seventh composition is for a fresh pebble's composition.  The single pebbles are the only models that utilize individually modeled TRISO particles.  For the full-core models, each pebble is  homogenized.  Each pebble has two regions, an inner region that contains the TRISO particles embedded in graphite, and an outer region consisting only of graphite, see \ref{fig:pebb-zone1}.  Each region is homogenized by volume fraction using the mix card in Serpent.
+
 \input{fig-pebble-zone}
 \input{fig-part-layer}
 \input{param-table2}
 \input{param-table3}
-\\
-Fuel isotopic composition aside, the pebbles are identical in both reactor designs.  Both reactors feature a 6-month multi-pass cycle, with each pass through the core taking 6 months.  That is to say, a pebble will go through six 6-month passes before leaving the core.
+
 
 \section{Sangamon200}
-Sangamon200 is a 200 MWth helium cooled reactor.  It is an Xe-100 inspired design, and further informed by previous work on reactors such as the PBMR.  Parameters are generally pulled from literature, or made by averaging given values in literature.  For unspecified reactor dimensions, a rough estimate is approximated by assuming provided figures of a design are to scale, and converting measurements in pixels to cm.
-
-Sangamon200 is still, however, a simplification of previously established designs.  The "cone" formed at the top and bottom of the reactor core is averaged to a flat surface, to create a cylindrical core shape.  The graphite reflector surrounds it, with no barriers between the reflector and helium/pebble-filled active core region.  In effect, the reflector is the container for the pebbles.  These are the only simulated parts of the reactor.  It is assumed no control rods are being used.  In addition, the graphite reflector is defined as a solid cylindrical shell.
+Sangamon200 is a 200 MWth helium cooled reactor, with parameters as defined in \ref{table:params1}.  Though the model does use some parameters from pre-established designs, it is still, a simplification.  The "cone" formed at the top and bottom of the reactor core by the pebbles  is averaged to a flat surface, to create a cylindrical core shape.  The graphite reflector surrounds it, with no barriers between the reflector and helium/pebble-filled active core region.  In effect, the reflector is the container for the pebbles.  These are the only simulated parts of the reactor.  It is assumed no control rods are being used.  In addition, the graphite reflector is defined as a solid cylindrical shell.
 
 While Sangamon200 is not the focus of this assessment, some neutronics features were determined to aid in Sangamon20's design.  A surface current detector was placed in the reflector, just inside the outer bound of the reflector, as shown in \ref{fig:det-place}.
 
@@ -23,17 +25,17 @@ This detector measures the outward neutron current (*** serpent outputs units of
 J^+ [\frac{\#}{cm^2s}] = \frac{J^+ [\frac{\#}{s}]}{S_{det}[cm^2]}
 \end{equation}
 
-After accounting for the surface area, the outward current at the detector is 7.351e+11.
+After accounting for the surface area, the outward current at the detector is $7.351x10^{11}$.
 
 \section{Sangamon20}
 
-Sangamon20 is a 20 MWth helium-cooled pebble bed reactor, fueled with 19.75\% enriched uranium oxycarbide.  While the capacity of Sangamon20 is 10\% that of Sangamon200, it isn't accurate to simply scale Sangamon200's dimensions down to 10\% of their original values.
+Sangamon20 is a 20 MWth helium-cooled pebble bed reactor, fueled with 19.75\% enriched uranium oxycarbide.  While the capacity of Sangamon20 is 10\% that of Sangamon200, it isn't sufficient to simply scale Sangamon200's dimensions down to 10\% of their original values, as that wouldn't have the correct volume for the required pebbles, and the neutronics wouldn't be preserved correctly.
 
 \subsection{Inner Core Volume Determination}
 
-The first assumption made in the scale-down is that Sangamon200 and Sangamon20 have the same power density, or $\frac{\text{kW}}{\text{g fuel}}$ (*** I called this "power density" as that is how serpent refers to this value.  But, given that it is per unit mass, is "specific power" a better term?***).
+The first assumption made in the scale-down is that Sangamon200 and Sangamon20 have the same power density, or $\frac{\text{kW}}{\text{g UCO}}$.
 
-It is simple enough to calculate the mass of fuel in Sangamon200:
+To calculate the mass of fuel in Sangamon200:
 
 
 \begin{align}
@@ -49,7 +51,7 @@ n_{p}&= \mbox{ number of pebbles in Sangamon200}
 
 Using the parameters in \ref{table:params1}, the power density of Sangamon200 and Sangamon20 is 0.11 $[\frac{kW}{g}]$.  With a power capacity of 20 MWth, one can calculate the total mass of UCO in Sangamon20 as
 \begin{equation}
-M_{f,20} = \frac{20*10^3 [kW]}{0.11[\frac{kW}{g}]} = 181818.18 [g]
+M_{f,20} = \frac{P [kW]}{\rho_{p}[\frac{kW}{g}]} = 181818.18 [g]
 \end{equation}
 The mass of fuel in a single pebble can be found using the density of UCO and the total volume of UCO kernels in a single pebble, as above.  The number of pebbles in the entire reactor, then, is found by dividing the total mass of fuel by the mass of fuel in one pebble, as follows:
 
@@ -69,7 +71,7 @@ Using the formula for the volume of a cylinder, one can plot possible sets of $r
 
 \input{fig-rh-vol.tex}
 
-The most critical configurations for a cylinder are either a \emph{square} shape, in which the height is equal to the diameter, or a \emph{flat} shape in which diameter is significantly greater than height.  As a flat shape is disadvantageous for a reactor, the former is chosen.  The point indicated in \ref{fig:rh-vol} shows the radius and height selected for Sangamon20 - a radius of 90 cm, and a height of 180 cm.
+The most critical configurations for a cylinder are either a \emph{square} shape, in which the height is equal to the diameter, or a \emph{flat} shape in which diameter is significantly greater than height.  As a flat shape is disadvantageous for a thermal reactor, the former is chosen.  The point indicated in \ref{fig:rh-vol} shows the radius and height selected for Sangamon20 - a radius of 90 cm, and a height of 180 cm.
 
 \subsection{Graphite Reflector Thickness Determination}
 
