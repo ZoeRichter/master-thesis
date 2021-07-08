@@ -87,6 +87,10 @@ The exact isotopic composition is approximated by running a burnup calculation u
 
 Once the isotopic compositions are determined, the pebbles are homogenized by volume, to improve performance.  The volume of a TRISO particle, and more specifically, a UCO kernel, is assumed constant.
 
+\section{Heterogenization Tests}
+
+As described above, the pebbles use the approximation of a homogenized 'fueled-center', to reduce computational load.  However, a few tests were performed which undid this change, explicitly modeling all TRISO particles in the full core model, as they are in the single-pebble (infinite lattice) depletion models which generated the equilibrium fuel composition.
+
 \section{Reactor Sensitivity to Pebble Locations and Symmetry}
 
 As the pebble locations and compositions are determined randomly, it is entirely possible to have bands in the reactor where multiple pebbles of same (or similar) burnup form lines or pockets.  In the interest of better characterizing the neutronics of the reactor, a sensitivity analysis tested various pebble composition locations.  The \emph{shuffling} test maintained the pebble locations, but changed what composition the individual pebbles were.  A second test completely changed the location of the pebbles in the core by randomly dispersing them again.  The third analyzed the effects of utilizing a symmetry simplification, in order to improve computational speed.  The core was approximated using a $\frac{1}{6}$ slice.  The slice used to simplify changed in each test, shown in \ref{fig:slicetest}.  In each test, all other parameters remain the same.

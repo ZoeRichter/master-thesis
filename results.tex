@@ -121,7 +121,7 @@ The coolant spectra differed from each other after the thermal peak in a magnitu
 
 It is in the pebble spectra that we see the most dramatic disagreement.  Around the thermal peak, in both \ref{fig:diff-fresh} and \ref{fig:diff-six}, there is a spike in the relative difference, though the error is still substantial in this region compared to the peaks in the relative difference.  Between the thermal peak and ~5E-02, the differences are minimal and can be accounted for by noise or error.  Between 10E-02 and 10E-01, however, there is a slight blip, which may be indicative of a fission product with a resonance around this region **I don't think I said that quite right*** being affected by having graphite surrounding it more directly.
 
-The most dramatic peaks occur in the six-pass pebble at 0.2995 MeV, which indicates that the homogenized reactor is over-predicting the lethargy-adjusted neutron flux at this energy level.  To be precise, the homogenized pebble model is over-predicting in this region by a factor of 2.69.  In both the fresh and six-pass pebble spectra, there is a peak at *****.  One possibility is that the U-235 in the pebble is more likely to undergo fission in a homogenized pebble, which disperses the U-235 atoms in what is almost pure graphite, compared to the heterogenized pebbles, which, while some U-235 atoms may be directly next to graphite, are most like near other U-235 atoms.  That the peak in the fresh pebble is so much higher - a factor of 4 - compared to the six-pass pebble - a factor of 2 - also is another sign.
+The most dramatic peaks occur in the six-pass pebble at 0.2995 MeV, which indicates that the homogenized reactor is over-predicting the lethargy-adjusted neutron flux at this energy level.  To be precise, the homogenized pebble model is over-predicting in this region by a factor of 2.69.  In both the fresh and six-pass pebble spectra, there is a peak at *****.  One possibility is that the U-235 in the pebble is more likely to undergo fission in a homogenized pebble, which disperses the U-235 atoms in what is almost pure graphite, compared to the heterogenized pebbles, which, while some U-235 atoms may be directly next to graphite, are most like near other U-235 atoms.  That the peak in the fresh pebble is so much higher - a factor of 4 - compared to the six-pass pebble - a factor of 2 - is another sign.
 
 
 
@@ -146,29 +146,6 @@ One point of interest, however, is the degree to which the region from 0 to 60 d
 
 Unsurprisingly, in the areas outside the 0 to 60 degree slice, the two fission rate meshes disagree quite a bit.  However, within this region, the two meshes are almost identical, pixel for pixel.  While this might be expected towards the center of this region, the perfect match towards the edges of it are less so.  As a reminder, the symmetry tests all use a one-sixth symmetry, and a periodic boundary condition, i.e., when a neutron leaves the slice on one side, it re-enters the slice on the other.  In effect, the edges of the 0-60 slice in the symmetry test are seeing entirely different materials, compared to the control.  That there is not a gradient of difference at the edges in \ref{fig:htgr-diff}, but rather a hard line, may suggest that, with proper mixing, nearest-neighbor pebbles do not have a very strong effect.  However, it is important to note that Sangamon20 uses only fuel pebbles, and this observation may not hold true in a reactor design using, for example, adsorber pebbles. 
 
-***I think I should put these in the appendix and directly reference them here - there just isn't enough "new" to say for each of the figures that warrants them all being in the main body, I think?***
-\input{fig-60-120} 
-
-
-\input{fig-120-180}
-\begin{itemize}
-\item as above, but the 120-180 degree slice
-\end{itemize}
-
-\input{fig-180-240}
-\begin{itemize}
-\item as above, but the 180-140 degree slice
-\end{itemize}
-
-\input{fig-240-300}
-\begin{itemize}
-\item as above, but the 240-300 degree slice
-\end{itemize}
-
-\input{fig-300-360}
-\begin{itemize}
-\item as above, but the 300-360 degree slice
-\end{itemize}
 
 \subsection{Effects of Pebble Shuffling}
 
