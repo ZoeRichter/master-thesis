@@ -1,23 +1,3 @@
-outline:
-\begin{itemize}
-\item Motivation
-	\begin{itemize}
-	\item climate change
-	\item gen IV > gen III
-	\item microreactors alleviate many of the construction/installation issues associated with larger reactors
-	\item pebbles using TRISO particles are an ideal fuel form, if there are no plans to reprocess (the US currently does not)
-	\end{itemize}
-\item Objectives
-	\begin{itemize}
-	\item establish a basic model for a HTGR pebble-bed microreactor
-	\item characterize the effects of random pebble placement on the results
-	\item describe a scale-down from a basic 200 MWth design to a 20 MWth microreactor
-	\end{itemize}
-\end{itemize}
-
-
-
-
 \section{Motivation}
 
 The effects of global warming are becoming increasingly severe. (***include NASA facts?***).  In the interest of reducing the global carbon footprint, a desire for carbon-free, sustainable energy is growing. With this interest comes a bevy of new research in the next generation of nuclear reactors.
@@ -28,37 +8,41 @@ The next generation of nuclear reactors also include designs significantly small
 
 This work used a pebble-bed HTG-SMR as a starting point, and modeled a fairly generic 200MWth reactor based on existing designs - named Sangamon200. Then it scaled down to a target size - a 20MWth pebble bed HTGR.  "Microreactors" such as these are generally 70 MWth or less, and can be deployed in areas where only a small amount of power is needed, used for research and testing, or be used to supply heat for other industrial processes, such as producing hydrogen.
 
+Down-sized modular reactors, such as SMRs or microreactors, have a few inherent safety benefits over their larger cousins, which also prompts their development.  The smaller scale of the reactor pressure vessel (RPV) makes the large active cooling loops of contemporary commercial nuclear reactors unneccesary.  For smaller reactors, decay heat can be removed with passive systems that rely on natural convection and surface heat transfer after something such as a station black-out (SBO).  When power is supplied, supplementary fans and surface coolers can aid heat removal \cite{reutler_advantages_1984}.
+
 The 20MWth model, which will hereafter be referred to as Sangamon20, is of a highly simplified design, which can be used in future testing and analysis.
 
-*******why modular: reutler and lohnert**********
+
 
 \section{Objectives}
 
+This work briefly describes a 200 MWth pebble-bed HTGR SMR, inspired by concepts from the PBMR and X-energy reactors, henceforth named Sangamon200.  After establishing the larger model as a baseline, a scaled-down 20 MWth model, Sangamon20, is designed, and is the focus of this work.
 
-\section{The High Temperature Gas Cooled Reactor: Beginnings and Concepts}
+Using Sangamon20, a variety of modifications to its model are made, and their effects on key parameters are investigated.  These modifications include heterogenizing versus homogenizing the pebble centers, applying a 6-point symmetry to the core (using $/frac{1}{6}$ to approximate the entire core), and a simple test of re-assigning pebble fuel compositions to test the model's randomness and pebble mixing.  Additionally, the isotopic compositions for all pebble burnups are supplied, and trends over increasing burnup are discussed.
+
+\section{Background}
+\subsection{The High Temperature Gas Cooled Reactor: Beginnings and Concepts}
 
 High temperature gas cooled reactors, or HTGRs, are one of the more commonly seen Generation IV reactor designs.  It most often uses helium as a coolant, and graphite as a moderator in thermal designs.  Fuel is in the form of tristructural-isotropic, or TRISO particles.  TRISO particles use a small kernel of fuel, less than half a millimeter across, surrounded by layers of carbon and silicon carbide to protect the fuel kernel and prevent the leakage of radioisotopes ***(would it also be accurate to say the layers provide moderating material?  I know that graphite is a great moderator, but I would think the main purpose is safety and to prevent leaching, and moderation is really in the graphite the particles are embedded in)***.  These TRISO particles are then embedded in graphite to form a usable fuel element.  In prismatic HTGRs, the graphite is in the shape of hexagonal columns.  In pebble-bed reactors, the graphite is in the shape of spheres, around the size of a billiard ball.  Many of these pebbles are loaded into the core, and slowly move through the bottom in a manner not dissimilar to grain in silos.
 
 HTGRs, however, are not a new concept.  Preliminary concepts for a gas-cooled reactor were created as early as 1942.  Farrington Daniels - more commonly known for work in chemistry and solar power technology - is attributed with establishing the first theoretical designs.  A professor from the University of Wisconsin, Professor Daniel's work with Oak Ridge National Laboratory (ORNL) nailed-down the most basic characteristics of the HTGR.  The choice of helium for coolant, graphite for moderator, the direct gas turbine cycle, and the use of uranium or thorium carbides for fuel all came from his work \cite{simnad_early_1991}.
-
-Professor Daniels recognized early on the importance of a small power-producing unit with low initial costs and ease of transport in developing nations - a sentiment that has resurfaced in recent years in the designs for small modular reactors.  Daniels' first design was for a simple high-temperature pebble pile.  A little over a decade later, improvements to turbine technology prompted him to propose a direct-cycle helium cooled reactor.  However, before any construction could start, the Atomic Energy Commission opted to support Light Water Reactor (LWR) technology instead \cite{simnad_early_1991}.
 
 \input{fig-daniels-1.tex}
 \input{fig-daniels-2.tex}
 
 Figures \ref{fig:daniels-1} and \ref{fig:daniels-2} show the design of the 1955 design proposed by Professor Daniels.  Like many modern modular reactor plant designs, Professor Daniels suggested that the reactor be mostly underground.  A key difference between the Farrington Daniels designs and modern HTGRs is the fuel form.  While modern designs use TRISO particles embedded in graphite, the Daniels' design uses solid graphite blocks, with channels for both coolant and fuel.  Within the fuel channels, fuel was loaded in either a pellet or cartridge form, both a mixture of 10$\%$ uranium dicarbide and graphite powder.  In addition to these fuel channels, the design included an outer ring of graphite reflector in which thorium was used to breed U-233.  Control rods were made of boron-containing molybdenum.  Additional safety rods made of the same were held above the core by steel wires that would melt in the case of an accident, dropping the safety rods into the core \cite{simnad_early_1991}.
 
-\section{Earliest Operational HTGRs}
+\subsection{Earliest Operational HTGRs}
 
 The earliest operational HTGRs were first started in the 1960s.  The AVR, from Germany, Dragon, operating in the UK, and Peach Bottom 1, which operated in the US \cite{beck_high_nodate}.
 
-\subsection{Dragon}
+\subsubsection{Dragon}
 
 The Dragon prismatic HTGR was a test reactor operated in Winfrith, UK, from 1964 to 1975, making it the oldest of the reactors discussed in this chapter.  It operated at inlet and outlet temperatures of 350\textdegree  C and 750\textdegree  C and a power of 20MWt \cite{beck_high_nodate}.  Dragon's main purpose was to test reactor materials, with an emphasis on fuels.  It originally used uranium and thorium as fuel, but switched to a purely uranium-based fuel with a lower enrichment later in life.  The fuel elements themselves were similar in shape to the Daniels' design - hexagonal prisms with fuel rod channels.
 
 Contrary to the fuel philosophy seen today, Dragon originally allowed fission products to be released from fuel elements into the circulating helium coolant.  The fission products would then be purged from the helium.  However, Dragon later switched to a coated-particle fuel when it became clear that having such large fission product releases would be difficult to manage \cite{simnad_early_1991}.
 
-\subsection{Peach Bottom 1}
+\subsubsection{Peach Bottom 1}
 
 Peach Bottom 1 operated from 1966 to 1974, by the Philadelphia Electric Company.  It was the first operational HTGR in the US, and the first to produce electric power.  It was slightly larger than Dragon, at a nameplate capacity of 115 MWt/40MWe and a slightly lower operating temperature range at 327\textdegree  C to 700\textdegree  C inlet to outlet \cite{beck_high_nodate}.  Like Dragon, Peach Bottom 1 was a prismatic reactor, however, Peach Bottom used coated uranium and thorium carbide particles from the beginning.  The original fuel used a single coating of pyrolytic carbon.  However, after multiple fuel failures, Peach Bottom upgraded to bistructural isotropic, or BISO, fuels by adding an additional layer.  Peach Bottom would later upgrade the fuel once again by adding a silicon carbide layer, forming TRISO particles \cite{beck_high_nodate}.  One operational benefit of upgrading to TRISO particles from BISO particles was that the superior fission product retention meant that Peach Bottom 1 could remove the helium purging systems.  In addition to the inner fuel region, Peach Bottom, like the Daniels' design, bred U-233 in an outer region using thorium.
 
@@ -66,7 +50,7 @@ Beyond changing the number and materials for fuel coatings, the experiences in P
 
 In the end, Peach Bottom 1 closed when it was determined to be uneconomical.
 
-\subsection{AVR}
+\subsubsection{AVR}
 
 The Arbeitsgemeinschaft Versuchsreaktor (AVR) was an experimental pebble-bed reactor operated in the Jülich Research Center from 1967 to 1988.  It had a capacity of 46 MWt/15MWe, with inlet and outlet temperatures of 275\textdegree  C and 950\textdegree  C \cite{beck_high_nodate}.  In fact, the AVR reached the highest operating temperatures of any commercial nuclear plant.  Like the others in this early time period. the AVR used a combination of uranium and thorium fuels, though the AVR began with BISO particles.  The core held around 100,000 graphite pebbles, almost a third of which had fuel in them.
 
@@ -86,5 +70,5 @@ Beyond accident safety, the AVR allowed for testing and demonstration of the saf
 \input{fig-dust-act}
 
 
-\subsection{serpent}
+\subsection{Serpent}
 Serpent 2 is "a multi-purpose three-dimensional continuous-energy Monte Carlo particle transport code" \cite{noauthor_serpent_nodate} from the VTT Technical Research Center of Finland.  The first iteration, Serpent 1, began development in 2004.  The development of Serpent 2 is presently ongoing.  Serpent 2 has three main applications: traditional reactor physics, coupled multi-physics, and neutron and photon transport.  
