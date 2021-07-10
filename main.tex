@@ -21,11 +21,12 @@
 \usepackage{hhline}
 \usepackage{amsmath}
 \usepackage{color}
+\usepackage{float}
 \usepackage{multirow}
 \usepackage{siunitx}
 \usepackage{subcaption}
 \usepackage{adjustbox}
-\sisetup{
+\sisetup{ 
     input-decimal-markers = .,input-ignore = {,},table-number-alignment = right,
     group-separator={,}, group-four-digits = true
 }
@@ -45,6 +46,7 @@
   \BODY
   \end{lrbox}
   \pgfmathparse{#1/\wd\measure@tikzpicture}%
+
   \edef\tikzscale{\pgfmathresult}%
   \BODY
 }
