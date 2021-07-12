@@ -84,7 +84,7 @@
 \msthesis
 \advisor{Kathryn D. Huff}
 \degreeyear{2021}
-\committee{---}
+\committee{Professor Kathryn D. Huff \\ Dr. Madicken Munk}
 
 %% Template created by Charles Bae, 2018
 
@@ -95,13 +95,12 @@
 %% Create an abstract that can also be used for the ProQuest abstract.
 %% Note that ProQuest truncates their abstracts at 350 words.
 \begin{abstract}
-
-
+Pebble-bed HTGR designs present a unique modeling challenge.  Pebble-beds can have a variety of pebble compositions due to varying levels of burnup, and the pebbles are mobile in the core- entering from the top and exiting through the bottom - and may not fall in a uniform arrangement.  This work introduces a simple 20 MWth pebble-bed HTGR reactor model (named Sangamon20) and investigates not only the neutronics of the base model, but the changes to core neutronics after making changes to the model: heterogenizing versus homogenizing the pebble center, imposing a symmetry assumption, and changing the arrangement of pebble fuel compositions, all using Serpent2.0 and Python.  Different to previous works using a uniform lattice and single pebble composition, Sangamon20 uses a random dispersal of seven different pebble compositions, each corresponding to a different level of burnup.  The heterogenization tests compare $k_{eff}$, thermal and fast flux profiles, and the neutron lethargy-adjusted energy spectra in the whole-core, reflector, coolant, and a randomly chosen fresh and discharge-burnup pebble.  Shuffling and symmetry tests monitor changes to $k_{eff}$ and the outward neutron current at the outer reflector boundary.  These two tests did not cause a large difference in either.  However, for the heterogenization tests, $k_{eff}$ differed by over 4.0\%, and the pebble spectra at certain higher energies disagreed by a factor of 2-4.  A complete fuel isotopic composition is accessible at ***ref comps zenodo***, and select isotopic inventories are discussed.
 
 \end{abstract}
 
 \chapter*{Acknowledgments}
-
+\input{acks}
 Acks.
 
 %% The thesis format requires the Table of Contents to come
