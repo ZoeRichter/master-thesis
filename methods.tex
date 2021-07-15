@@ -1,11 +1,11 @@
-Using data from the Sangamon200 model, a 200MWth design inspired by the PBMR and Xe-100 a scaled down reactor called the Sangamon20 was created.  Both Sangamon200 and Sangamon20 are uranium oxycarbide(UCO)-pebble fueled, helium cooled microreactors.
+This chapter introduces Sangamon20, a scale-down of Sangamon200, a 200MWth design inspired by the PBMR and Xe-100.  Both Sangamon200 and Sangamon20 are uranium oxycarbide(UCO)-pebble fueled, helium cooled microreactors.
 
 \input{param-table1}
 
-All simulations were performed using Serpent 2.0 \cite{leppanenjaakko_serpent_2015}.  Pebble and TRISO particle locations are both determined using the Serpent 2.0 particle dispersal routine.  Which takes the number of particles, defined by the user, or $\eta_{pf}$, the packing fraction (the total volume of particles divided by the volume of that space).  The dispersal routine has the user define the particle radius, and the size and shape of the volume the particles are housed in.  The routine first randomly determines a single point for each particle contained in the volume.  Then, the routine uses the 'growth factor' and 'shake factor' - both described as fractions of the particle radius, and iterates.  During each iteration, the size of the point's radius increases by the growth factor.  Additionally, the center will move in a random direction a distance equal to the shake factor.  If the particle growth causes the particle to overlap with another particle or leave the volume, it doesn't get larger that cycle.  Similarly, if the center's movement causes overlap or the particle to leave the containing volume, it doesn't move.  The dispersal routine iterates until all particles are to their full size, contained in the volume, and not overlapping with any other particles.  The routine generates an output file, where each line gives the location of the particle center (in x,y,z coordinates), the particle radius, and the name of the particle type, to associate it with the "pbed" card (see \cite{leppanenjaakko_serpent_2015}) later.
+All simulations used Serpent 2 \cite{leppanenjaakko_serpent_2015}, and supplementary calculations using Python \cite{van_rossum_python_nodate}, \cite{harris_array_2020} and PyNE \cite{scopatz_pyne:_2012}.  The Serpent 2 particle dispersal routine determined pebble and TRISO locations.  It takes the number of particles, defined by the user, or $\eta_{pf}$, the packing fraction (the total volume of particles divided by the volume of that space).  The dispersal routine has the user define the particle radius, and the size and shape of the volume housing the particles.  The routine first randomly determines a single point for each particle contained in the volume.  Then, the routine uses the 'growth factor' and 'shake factor' - both described as fractions of the particle radius, and iterates.  During each iteration, the size of the point's radius increases by the growth factor.  Additionally, the center will move in a random direction a distance equal to the shake factor.  If the particle growth causes the particle to overlap with another particle or leave the volume, it doesn't grow that cycle.  Similarly, if the center's movement causes overlap or the particle to leave the containing volume, it doesn't move.  The dispersal routine iterates until all particles are to their full size, contained in the volume, and not overlapping with any other particles.  The routine generates an output file, in which each line gives the location of the particle center (in x,y,z coordinates), the particle radius, and the name of the particle type, to associate it with the "pbed" card (see \cite{leppanenjaakko_serpent_2015}) later.
 \\ \\
 
-In order to determine isotopic compositions in the pebbles, a Serpent burnup simulation of a single pebble is run in burnup steps of 180, 360, 540, 720, 900, and 1080 days - to represent six, six-month passes.  The single pebbles are the only models that utilize individually modeled TRISO particles by default.  Each pebble has an inner region containing the TRISO particles embedded in graphite, and an outer region consisting only of graphite, see \ref{fig:pebb-zone1}.  Each region is homogenized by volume fraction using the "mix" card (see \cite{leppanenjaakko_serpent_2015}) in Serpent.
+In order to determine isotopic compositions in the pebbles, a Serpent 2 burnup simulation of a single pebble ran in burnup steps of 180, 360, 540, 720, 900, and 1080 days - to represent six, six-month passes.  The single pebbles are the only simulations that utilize individually defined TRISO particles by default.  Each pebble has an inner region containing the TRISO particles embedded in graphite, and an outer region consisting only of graphite, see \ref{fig:pebb-zone1}.  Each region homogenized by volume fraction using the "mix" card (see \cite{leppanenjaakko_serpent_2015}) in Serpent 2.
 
 \input{fig-pebble-zone}
 %\input{fig-part-layer}
@@ -14,22 +14,27 @@ In order to determine isotopic compositions in the pebbles, a Serpent burnup sim
 
 
 \section{Sangamon200}
-Sangamon200 is a 200 MWth helium cooled reactor, with parameters as defined in Table \ref{table:params1}.  Though the model does use some parameters from pre-established designs, it is a simplification.  The top and bottom of the reactor core are averaged to a flat surface, to create a cylindrical shape.  The graphite reflector surrounds it with no barriers between the reflector and active core region. These are the only simulated parts of the reactor, as it is assumed no control rods are being used.  In addition, the graphite reflector is defined as a solid cylindrical shell, a container for the pebbles.
+Sangamon200 is a 200 MWth helium cooled reactor, with parameters as defined in Table \ref{table:params1}.  Though the model does use some parameters from pre-established designs, it is a simplification.  The top and bottom of the reactor core are a flat surface, to create a cylindrical shape.  The graphite reflector surrounds it with no barriers between the reflector and active core region. These are the only simulated parts of the reactor - there are no control rods included.  In addition, the graphite reflector is a solid cylindrical shell, a container for the pebbles.
 
-While Sangamon200 is not the focus of this assessment, some parameters were determined to aid in Sangamon20's design.  A surface current detector was placed in the reflector, just inside the outer bound of the reflector, as shown in \ref{fig:det-place}.
+While Sangamon200 is not the focus of this assessment, some parameters determined aided in Sangamon20's design.  A surface detector placed in the reflector, just inside the outer bound of the reflector, shown in \ref{fig:det-place}, tracks the outward neutron current.
 
 \input{fig-det-place}
 
-This detector measures the outward neutron current (*** serpent outputs units of [number/s], is current still the best word? ***) in $\left[\frac{\#}{s}\right]$.  To arrive at the unit of $\left[\frac{\#}{cm^2s}\right]$ most are familiar with, the reported outward current is divided by the detector's surface area thus:
-\begin{equation}
-J^+ \left[\frac{\#}{cm^2s}\right] = \frac{J^+ \left[\frac{\#}{s}\right]}{S_{det}\left[cm^2\right]}
-\end{equation}
+This detector measures the outward neutron current (*** serpent outputs units of [number/s], is current still the best word? ***) in $\left[\frac{\#}{s}\right]$.  To arrive at the unit of $\left[\frac{\#}{cm^2s}\right]$ most are familiar with, we divide by the detector's surface area thusly:
+
+\begin{align}
+J^+ &= \frac{J_s^+ }{S_{d}}
+\intertext{where}
+J^+&= \mbox{ outward neutron current $\left[\frac{\#}{cm^2s}\right]$}\nonumber\\
+J_s^+&= \mbox{ surface unadjusted outward neutron current $\left[\frac{\#}{s}\right]$}\nonumber\\
+S_{d}&=\mbox{ detector surface area $[cm^2]$}
+\end{align}
 
 After accounting for the surface area, the outward current at the detector is $7.351x10^{11} \left[\frac{n}{cm^{2}s}\right]$.
 
 \section{Sangamon20}
 
-Sangamon20 is a 20 MWth helium-cooled pebble bed reactor, fueled with 19.75\% enriched uranium oxycarbide.  While the capacity of Sangamon20 is 10\% that of Sangamon200, it isn't sufficient to simply scale Sangamon200's dimensions down to 10\% of their original values, as that wouldn't have the correct volume for the required pebbles, and the neutronics wouldn't be preserved correctly.
+Sangamon20 is a 20 MWth helium-cooled pebble bed reactor, fueled with 19.75\% enriched uranium oxycarbide.  While the capacity of Sangamon20 is 10\% that of Sangamon200, it isn't sufficient to simply scale Sangamon200's dimensions down to 10\% of their original values, as that wouldn't have the correct volume for the required pebbles, and the neutronics would be inconsistent.
 
 \subsection{Inner Core Volume Determination}
 
@@ -50,28 +55,45 @@ n_{p}&= \mbox{ number of pebbles in Sangamon200}
 
 
 Using the parameters in \ref{table:params1}, the power density of Sangamon200 and Sangamon20 is 0.11 $[\frac{kW}{g}]$.  With a power capacity of 20 MWth, one can calculate the total mass of UCO in Sangamon20 as
-\begin{equation}
-M_{f,20} = \frac{P [kW]}{\rho_{p}[\frac{kW}{g}]} = 181818.18 \left[g\right]
-\end{equation}
-The mass of fuel in a single pebble can be found using the density of UCO and the total volume of UCO kernels in a single pebble, as above.  The number of pebbles in the entire reactor, then, is found by dividing the total mass of fuel by the mass of fuel in one pebble, as follows:
 
-\begin{equation}
-n_{p,20} = \frac{M_{f,20}}{\frac{4}{3}r_{u}^3n_{T}\rho_{u}}
-\end{equation}
+\begin{align}
+M_{f,20} &= \frac{P}{\rho_{p}} = 181818.18 \left[g\right]
+\intertext{where}
+M_{f,20}&= \mbox{ total mass of UCO in Sangamon20 [g]}\nonumber\\
+P&= \mbox{ Thermal power of Sangamon20 [kW] }\nonumber\\
+\rho_p &=\mbox{ Sangamon20's power density $[\frac{kW}{g}]$}
+\end{align}
 
+The above calculates the mass of a single pebble using the density of UCO and the total volume of UCO kernels in a single pebble.  The total mass of fuel in the reactor divided by the mass of fuel in a single pebble gives the number of pebbles in the reactor, as follows:
+
+\begin{align}
+n_{p,20} &= \frac{M_{f,20}}{\frac{4}{3}r_{u}^3n_{T}\rho_{u}}
+\intertext{where}
+n_{p,20}&= \mbox{ number of pebbles in Sangamon20 [-]}\nonumber\\
+M_{f,20}&= \mbox{ total mass of UCO in Sangamon20 [g]}\nonumber\\
+r_u&=\mbox{ radius of a UCO kernel [cm]}\nonumber\\
+n_{T}&= \mbox{ number of TRISO particles in a single pebble [-]}\nonumber\\
+\rho_{u}&= \mbox{ density of UCO $[\frac{g}{cm^3}]$}
+\end{align}
+\\
 Rounding up - there can only be complete pebbles - we arrive at the number of pebbles in \ref{table:params1}.
 
-Knowing the number of pebbles is insufficient - the exact dimensions of the active core region are still undefined.  To determine the volume of this space, the concept of the packing fraction can be used.  The packing of even uniform objects in a 3-dimensional space is a complicated problem \cite{tulluri_analysis_nodate}.  It is assumed the pebble behavior can be described as random loose packing \cite{tulluri_analysis_nodate} - the pebbles have unsystematically fallen into the core and the core is not shaken.  Such packing generally has a packing fraction in the range of 0.56 to 0.60 \cite{tulluri_analysis_nodate}.  Using the definitions above, the active core volume is
+Knowing the number of pebbles is insufficient - the exact dimensions of the active core region are still undefined.  To determine the volume of this space, the formula uses concept of the packing fraction.  The packing of even uniform objects in a 3-dimensional space is a complicated problem \cite{tulluri_analysis_nodate}.  Assuming the pebble behavior is random loose packing \cite{tulluri_analysis_nodate} - the pebbles have unsystematically fallen into the core and the core is unshaken - the packing fraction in the range of 0.56 to 0.60 \cite{tulluri_analysis_nodate}.  Using the definitions above, the active core volume is
 
-\begin{equation}
-V_{c,20} = \frac{ n_{p,20}\frac{4}{3}\pi r_{p}^3 }{ \phi }
-\end{equation}
+\begin{align}
+V_{c,20} &= \frac{ n_{p,20}\frac{4}{3}\pi r_{p}^3 }{ \eta_{pf} }
+\intertext{where}
+V_{c,20}&= \mbox{ volume of the active core in Sangamon20 $[cm^2]$}\nonumber\\
+n_{p,20}&= \mbox{ number of pebbles in Sangamon20 [-]}\nonumber\\
+r_p&=\mbox{ radius of a pebble [cm]}\nonumber\\
+\eta_{pf}&= \mbox{ packing fraction [-]}
+\end{align}
 
 Using the formula for the volume of a cylinder, one can plot possible sets of $r_{c,20}$ and $h_{c,20}$ that satisfy the volume requirement.
 
 \input{fig-rh-vol}
 
-The most critical configurations for a cylinder are either a \emph{square} shape, in which the height is equal to the diameter, or a \emph{flat} shape in which diameter is significantly greater than height.  As a flat shape is disadvantageous for a thermal reactor, the former is chosen.  The point indicated in \ref{fig:rh-vol} shows the radius and height selected for Sangamon20 - a radius of 90 $\left[cm\right]$, and a height of 180 $\left[cm\right]$.
+The most critical configurations for a cylinder are either a \emph{square} shape, in which the height is equal to the diameter, or a \emph{flat} shape in which diameter is significantly greater than height.  As a flat shape is disadvantageous for a reactor, Sangamon20 is the former.  The point indicated in \ref{fig:rh-vol} shows the radius and height selected for Sangamon20 - a radius of 90 $\left[cm\right]$, and a height of 180 $\left[cm\right]$.
 
 \subsection{Graphite Reflector Thickness Determination}
 
@@ -79,20 +101,26 @@ The reflector must be sufficiently thick to keep the reactor critical, and prote
 
 \section{Fuel Composition}
 
-The number of passes the pebble has theoretically experienced determines its isotopic composition.  Seven possible pebble compositions exist, one for each of the six 6-month passes, plus an additional composition for fresh pebbles.  The seven pebble compositions are represented equally in the core, and they are randomly distributed throughout.
+The number of passes the pebble has theoretically experienced determines its isotopic composition.  Seven possible pebble compositions exist, one for each of the six 6-month passes, plus an additional composition for fresh pebbles.  The seven pebble compositions are equally and randomly distributed in the core.
 
-The exact isotopic composition is approximated by running a burnup calculation using Serpent2.0 for a single pebble in a cube.  It uses a reflective boundary condition to simulate the presence of other pebbles or the reflector.  While the full-core models homogenize the pebbles, the single-pebble burnup model individually models each TRISO particle.  Just as with the location of the pebbles in the full core, the Serpent2 particle dispersal routine generated the TRISO particle locations.
+The design approximates the exact isotopic composition by running a burnup calculation using Serpent 2 for a single pebble in a cube.  It uses a reflective boundary condition to simulate the presence of other pebbles or the reflector.  Just as with the location of the pebbles in the full core, the Serpent 2 particle dispersal routine generated the TRISO particle locations.
 
 \input{fig-burn-20}
 
-Once the isotopic compositions are determined, the pebbles are homogenized by volume, to improve performance.  The volume of a TRISO particle, and more specifically, a UCO kernel, is assumed constant.
+Once the depletion simulation determines the isotopic compositions, the model homogenizes the pebbles by volume, to improve performance.  The volume of a TRISO particle, and more specifically, a UCO kernel, is constant.
 
 \section{Heterogenization Tests}
 
-As described above, the pebbles use the approximation of a homogenized 'fueled-center', to reduce computational load.  However, a few tests were performed which undid this change, explicitly modeling all TRISO particles in the full core model, as they are in the single-pebble (infinite lattice) depletion models which generated the equilibrium fuel composition.
+As described above, the pebbles use the approximation of a homogenized 'fueled-center', to reduce computational load.  However, a few tests performed undid this change, explicitly defining all TRISO particles in the pebbles, as they are in the single-pebble (infinite lattice) depletion models which generated the equilibrium fuel composition.
 
 \section{Reactor Sensitivity to Pebble Locations and Symmetry}
 
-As the pebble locations and compositions are determined randomly, it is entirely possible to have bands in the reactor where multiple pebbles of same (or similar) burnup form lines or pockets.  In the interest of better characterizing the neutronics of the reactor, a sensitivity analysis tested various pebble composition locations.  The \emph{shuffling} test maintained the pebble locations, but changed what composition the individual pebbles were.  A second test completely changed the location of the pebbles in the core by randomly dispersing them again.  The third analyzed the effects of utilizing a symmetry simplification, in order to improve computational speed.  The core was approximated using a $\frac{1}{6}$ slice.  The slice used to simplify changed in each test, shown in \ref{fig:slicetest}.  In each test, all other parameters remain the same.
+Due to the random nature of pebble locations, it is entirely possible to have bands in the reactor such that multiple pebbles of same (or similar) burnup form lines or pockets.  In the interest of better characterizing the neutronics of the reactor, a sensitivity analysis tested various pebble composition locations.  The \emph{shuffling} test maintained the pebble locations, but changed what composition the individual pebbles were.  A second test completely changed the location of the pebbles in the core by randomly dispersing them again.  The third analyzed the effects of utilizing a symmetry simplification, in order to improve computational speed.  The core used a $\frac{1}{6}$ slice approximation.  The slice used to simplify changed in each test, shown in \ref{fig:slicetest}.  In each test, all other parameters remain the same.
 
 \input{fig-slice-layout}
+
+The shuffle tests change which fuel composition is in which pebble.  As an example, Run 1 in the shuffle test makes all fresh, or "zero-pass" pebbles of the first-pass composition, first-pass pebbles of the second-pass, and so on, as follows:
+
+\input{fig-shuf}
+
+Run 2 makes the originally fresh (zero-pass) pebbles the second pass composition, the first-pass pebbles the third-pass composition, and so on.  The other four tests follow in this same pattern.
