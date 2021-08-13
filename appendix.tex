@@ -1,41 +1,91 @@
-Appendix.
+*** Bits surrounded by *** are notes for the reviewer, so you can ctrl-f to search for them.  I also included a section of general comments/concerns at the very end ***
+
+*** I think this section, or at least, the description at the end, could stand to be longer, but I didn't want to be repetitive or get too bogged down in color theory.***
 
 \section{Appendix A: Symmetry Test}
+Appendix A contains the geometry cross sections, fission rate/thermal flux meshes, and image difference results from the other symmetry tests.
+
 
 \input{fig-60-120}
 \input{fig-60-120-diff}
 
+Figure \ref{fig:60-120} provides fission rate and thermal flux visualization meshes for the symmetry test using the 60 - 120 degree slice.  Figure \ref{fig:60-120-diff} is the result of using image-difference between the control's full-core radial mesh and the symmetry test's mesh.
+
 \input{fig-120-180}
 \input{fig-120-180-diff}
 
+Figure \ref{fig:120-180} provides fission rate and thermal flux visualization meshes for the symmetry test using the 120 - 180 degree slice.  Figure \ref{fig:120-180-diff} is the result of using image-difference between the control's full-core radial mesh and the symmetry test's mesh.
 
 \input{fig-180-240}
 \input{fig-180-240-diff}
 
+Figure \ref{fig:180-240} provides fission rate and thermal flux visualization meshes for the symmetry test using the 180 - 240 degree slice.  Figure \ref{fig:180-240-diff} is the result of using image-difference between the control's full-core radial mesh and the symmetry test's mesh.
 
 \input{fig-240-300}
 \input{fig-240-300-diff}
 
+Figure \ref{fig:240-300} provides fission rate and thermal flux visualization meshes for the symmetry test using the 240 - 300 degree slice.  Figure \ref{fig:240-300-diff} is the result of using image-difference between the control's full-core radial mesh and the symmetry test's mesh.
 
 \input{fig-300-360}
 \input{fig-300-360-diff}
 
+Figure \ref{fig:300-360} provides fission rate and thermal flux visualization meshes for the symmetry test using the 300 - 360 degree slice.  Figure \ref{fig:300-360-diff} is the result of using image-difference between the control's full-core radial mesh and the symmetry test's mesh.
+
+To help explain the color difference plots, it may be helpful to go into further depth on RGB (red, green,blue) based colors and how the individual values correspond to colors when mixed.
+
+In the RGB color format, values for red, green, and blue can range from 0 to 255.  The higher the value for a color, the more of it is present in the resulting color.  If the values for red, green, and blue are the same, then the resulting color is a shade of grey.  If all values are set to their maximum, 255, then the result is pure white.  If all values are 0, then the result is pure black.  In general, colors with low RGB values are darker than  ones with greater RGB values.
+
+To understand why the differences in the active core are in green, it is useful to further describe basic color theory and complementary colors.  The fission rate meshes are shown in a hot color map, which ranges in color from an almost-white shade of yellow, to very dark browns.  In between these maximum and minimum shades are varying shades of yellow, orange, and brown.  To create a shade of yellow in RGB format, one uses a large amount of red and green.  To create the sort of almost-white yellow, one simply takes the base yellow, with large amounts of red and green, and increases the blue value (which, as described before, will transition the color to a lighter shade as all three RGB values approach the maximum of 255).  To move from yellow to an orangey-brown, one shifts the green value down.  Lowering red and green while keeping blue at a low value produces the darkest shades of brown seen in the color map.
+
+\input{fig-rgb-1}
+
+Figure \ref{fig:rgb-1} gives an example of selecting a color using RGB values.  Image difference works by subtracting the RGB values from each other - for example, subtracting ( 200, 150, 50 ) from ( 100, 200, 75 ) results in ( 100, 50, 25 ).  Absolute values are used because negative values don't exist in RGB colors.  So, when  two colors which have contrasting values of green, and similar values of red and blue, the result is, of course, a shade of green.
+
+In each of the image differences, the section used to approximate the entire core (for example, the section from 60 to 120 degrees in Figure \ref{fig:60-120-diff}).  Is very dark, which indicates that this region has little to no difference from the full-core control mesh.
+
+
 \section{Appendix B: Shuffle Test}
+Appendix B contains the geometry cross sections, fission rate/thermal flux meshes, and image difference results from the                                                                                                                                                                                                                                         shuffling tests.
+
 
 \input{fig-1234560}
 \input{fig-1234560-diff}
 
+Figure \ref{fig:1234560} provides the thermal flux and fission rate meshes and geometric cross sections axially and radially.  Figure \ref{fig:diff-1234560} is the result of the image difference between the full core control mesh and Figure \ref{fig:1234560-rm}.
+
 \input{fig-2345601}
 \input{fig-2345601-diff}
+
+Figure \ref{fig:2345601} provides the thermal flux and fission rate meshes and geometric cross sections axially and radially.  Figure \ref{fig:diff-2345601} is the result of the image difference between the full core control mesh and Figure \ref{fig:2345601-rm}.
 
 \input{fig-3456012}
 \input{fig-3456012-diff}
 
+Figure \ref{fig:3456012} provides the thermal flux and fission rate meshes and geometric cross sections axially and radially.  Figure \ref{fig:diff-3456012} is the result of the image difference between the full core control mesh and Figure \ref{fig:3456012-rm}.
+
 \input{fig-4560123}
 \input{fig-4560123-diff}
+
+Figure \ref{fig:4560123} provides the thermal flux and fission rate meshes and geometric cross sections axially and radially.  Figure \ref{fig:diff-4560123} is the result of the image difference between the full core control mesh and Figure \ref{fig:4560123-rm}.
 
 \input{fig-5601234}
 \input{fig-5601234-diff}
 
+Figure \ref{fig:5601234} provides the thermal flux and fission rate meshes and geometric cross sections axially and radially.  Figure \ref{fig:diff-5601234} is the result of the image difference between the full core control mesh and Figure \ref{fig:5601234-rm}.
+
 \input{fig-6012345}
 \input{fig-6012345-diff}
+
+Figure \ref{fig:6012345} provides the thermal flux and fission rate meshes and geometric cross sections axially and radially.  Figure \ref{fig:diff-6012345} is the result of the image difference between the full core control mesh and Figure \ref{fig:6012345-rm}.
+
+Comparing the image difference results of Appendix B, the shuffling test, to Appendix A, the symmetry test, shows that there is a smaller difference caused by the shuffling tests overall.  The small differences in this particular test would most likely indicate that the core is well-mixed, i.e., that each bin in the vertical direction, along the z axis, has each of the 7 fuel compositions represented equally.  In theory, if certain regions were highlighted in bright green, it would indicate regions that are poorly mixed.
+
+*** questions, comments, and concerns:
+
+I want to expand the end section for appendix b, but i'm not sure how to put want I want to say.
+
+The fission rate meshes are integrated over z, which is why the result is a radial image in x and y.  For the shuffling tests, if the image difference result shows little difference, it means the pebbles in that area are (vertically) well-mixed (the pebble comps are present in equal amounts).  Otherwise, shuffling the fuel compositions, say, making the fresh pebbles 6-pass pebbles, would cause a large shift.  In this same way, a region highlighted with bright green (theoretically) suggests a region that is not well-mixed - i.e., one pebble composition is likely dominating.  There are a few areas where differences are shown, but I wonder if this may be accounted for by the fact that shuffling pebble comps puts a different pebble burnup in the peak power region alone.
+
+Given that none of the image difference results in Appendix B have bright green, it's hard for me to double check this and make sure.  I suppose I could force a poorly mixed region by selecting pebbles with coordinates with same/similar z values and modify them?
+
+Other than the above, I don't like that the captions beneath are the same, but I don't know how to truly make them meaningfully different.***
