@@ -1,7 +1,5 @@
-*** Bits surrounded by *** are notes for the reviewer, so you can ctrl-f to search for them.  I also included a section of general comments/concerns at the very end ***
 
-*** I think this section, or at least, the description at the end, could stand to be longer, but I didn't want to be repetitive or get too bogged down in color theory.***
-
+\label{app}
 \section{Appendix A: Symmetry Test}
 Appendix A contains the geometry cross sections, fission rate/thermal flux meshes, and image difference results from the other symmetry tests.
 
@@ -79,13 +77,3 @@ Figure \ref{fig:5601234} provides the thermal flux and fission rate meshes and g
 Figure \ref{fig:6012345} provides the thermal flux and fission rate meshes and geometric cross sections axially and radially.  Figure \ref{fig:diff-6012345} is the result of the image difference between the full core control mesh and Figure \ref{fig:6012345-rm}.
 
 Comparing the image difference results of Appendix B, the shuffling test, to Appendix A, the symmetry test, shows that there is a smaller difference caused by the shuffling tests overall.  The small differences in this particular test would most likely indicate that the core is well-mixed, i.e., that each bin in the vertical direction, along the z axis, has each of the 7 fuel compositions represented equally.  In theory, if certain regions were highlighted in bright green, it would indicate regions that are poorly mixed.
-
-*** questions, comments, and concerns:
-
-I want to expand the end section for appendix b, but i'm not sure how to put want I want to say.
-
-The fission rate meshes are integrated over z, which is why the result is a radial image in x and y.  For the shuffling tests, if the image difference result shows little difference, it means the pebbles in that area are (vertically) well-mixed (the pebble comps are present in equal amounts).  Otherwise, shuffling the fuel compositions, say, making the fresh pebbles 6-pass pebbles, would cause a large shift.  In this same way, a region highlighted with bright green (theoretically) suggests a region that is not well-mixed - i.e., one pebble composition is likely dominating.  There are a few areas where differences are shown, but I wonder if this may be accounted for by the fact that shuffling pebble comps puts a different pebble burnup in the peak power region alone.
-
-Given that none of the image difference results in Appendix B have bright green, it's hard for me to double check this and make sure.  I suppose I could force a poorly mixed region by selecting pebbles with coordinates with same/similar z values and modify them?
-
-Other than the above, I don't like that the captions beneath are the same, but I don't know how to truly make them meaningfully different.***
