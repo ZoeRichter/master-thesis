@@ -59,15 +59,19 @@ In addition to centerline fast and thermal flux profiles, Figures \ref{fig:hom-p
 
 A slight banding pattern on the active core's edge exists --- primarily in the fast, rather than thermal, flux --- but with less intensity than the fission rate banding.  In the thermal flux, we see that the peak in \ref{fig:hom-det-xy} continues in a circular pattern surrounding the active core, approximately 10 cm into the graphite reflector.  The steep drop-off in fast flux once within the outer reflector, meanwhile, is clearer in \ref{fig:hom-plane-fast}.  Once again, Figure \ref{fig:hom-plane-fast} and Figure \ref{fig:hom-plane-therm} show that while the banding morphology may be present in the fission rate profile (and do cause a slight increase relative to the region immediately surrounding it) it does not cause concentric spikes in the flux profiles.  It is suspected that the banding pattern is less prevalent in the thermal flux because the banded region is directly next to the reflector, which has a smoothing effect.
 
-Figures \ref{fig:hom-core} through \ref{fig:hom-cool} present the energy spectra in the reflector, coolant, overall core, and a randomly selected fresh and sixth-pass pebble.  The results are per unit lethargy and use the Tripoli 315-group energy structure \cite{noauthor_tripoli_nodate} to set energy bin boundaries.  This group structure was chosen not only because there were a sufficient number of bins to provide the desired fidelity, but also because the highest fidelity regions (smallest bin size) in the spectrum were in the lower energy values, which is of greater interest to a thermal spectrum reactor.
+Figure \ref{fig:hom-all} presents the energy spectra in the reflector, coolant, overall core, and a randomly selected fresh and sixth-pass pebble.  The results are per unit lethargy and use the Tripoli 315-group energy structure \cite{noauthor_tripoli_nodate} to set energy bin boundaries.  This group structure was chosen not only because there were a sufficient number of bins to provide the desired fidelity, but also because the highest fidelity regions (smallest bin size) in the spectrum were in the lower energy values, which is of greater interest to a thermal spectrum reactor.
 
 \input{fig-hom-spec-core-ref}
 
 The thermal peak of the whole-core and reflector both occur around $10\times10^{-07}$ MeV, which is also the energy of neutrons most-responsible for fission.  The thermalization of neutrons in the reflector dominates the spectrum in Figure \ref{fig:hom-all}, indicated by the high magnitude of the thermal peak in the reflector and core and their similar shape.
 
-%\input{fig-hom-spec-f-6-cool}
-
 The spectra for a randomly selected fresh and sixth-pass pebble are subject to the highest uncertainty of all the provided spectra in Figure \ref{fig:hom-all}, as a single pebble has a relatively small bin size, which means fewer particles contribute to the tally regions.  However, if coupled with the coolant spectra, Figure \ref{fig:hom-all}, they provide a clearer look at the flux energy spectrum in the active core region.  We can see that, while the thermal energy of the fresh and six-pass pebbles are similar in shape and magnitude, the magnitude of the faster groups differ considerably.
+
+Figure \ref{fig:hom-peb} below shows the spectra of the one, two, three, four, and five pass pebbles, alongside the fresh pebble, six-pass pebble, and coolant spectra. 
+
+\input{fig-hom-spec-peb}
+
+Figure \ref{fig:hom-peb} shows that, compared the other pebble burnup levels, the fresh and six-pass pebbles have the softest spectra.  This may be due to the higher levels of $^{239}Pu$ in the \acrshort{mol} pebbles. Additionally, once all pebble spectra are presented together, along with the coolant, one can see much more clearly that the coolant spectra provides a very generalized look at the overall behavior in the pebble spectra.
 
 
 \section{Effect of Homogenization}
@@ -120,13 +124,11 @@ For both the thermal and fast flux profiles, error only worsens on the outermost
 
 \input{fig-diff-spec}
 
-Overall, the homogenized model is over-predicting the thermal peak compared with heterogenized in the core spectra by 5\%.  Around $10\times10^{-06}$ MeV, at an energy just above the thermal peak, the two sp(best phrase?)ectra agree before diverging again, this time with a slightly greater disagreement.  Unlike Figure \ref{fig:diff-flux}, error alone leaves the relative differences seen in Figure \ref{fig:diff-spec} unaccounted for (with the exception of the highest neutron energy ranges).
+For all relative difference images in the spectra, a maximum energy cutoff of 13.499 MeV was applied, as data points after this are too inaccurate (due to the low number of tallies in the spectra being compared) and tend to hide the trends in the lower energy ranges.  Overall, the homogenized model is over-predicting the thermal peak compared with the heterogeneous model in the core spectra by 5\%.  Around $10\times10^{-06}$ MeV, at an energy just above the thermal peak, the two spectra agree before diverging again, this time with a slightly greater disagreement.  Unlike Figure \ref{fig:diff-flux}, error alone leaves the relative differences seen in Figure \ref{fig:diff-spec} unaccounted for (with the exception of the highest neutron energy ranges, and the pebble spectra, which have higher uncertainty).
 
-The coolant spectra differed after the thermal peak in a magnitude and shape matching the differences in core spectra.  Unlike the core, however, the coolant has much closer agreement at lower energy levels, including at the thermal peak.  The reflector shows a slight over estimation for the homogeneous spectra, which is consistent for all but the highest energy levels.
+The pebble spectra have a much greater range of relative difference (greater than 1.0, sometimes spiking to factors of 10+).  However, given the wild oscillations and higher error, it is difficult to say with certainty that any of these peaks are "real", and not simply due to error.  
 
-It is in the pebble spectra that we see the most dramatic disagreement.  Around the thermal peak, in both Figures \ref{fig:diff-fresh} and \ref{fig:diff-six} (note the change in y-axis scale compared to others in Figures \ref{fig:het-core}, \ref{fig:het-reflec}, and \ref{fig:het-cool}) , the relative difference spikes; though the error is still substantial in this region compared with the peaks in the relative difference.  Between $10\times10^{-07}$ and $5\times10^{-02}$, the differences are minimal and likely accounted for by noise or error.  Between $10\times10^{-02}$ and $10\times10^{-01}$, the difference has a slight blip, which may be indicative of a fission product with a resonance around this region.
-
-The most dramatic peaks occur in the sixth-pass pebble at 0.2995 MeV, at which point the homogenized reactor is over-predicting the lethargy-adjusted neutron flux by a factor of 2.69.  Both the fresh and sixth-pass spectra have another peak at higher energy levels - fresh peaks at 6.3763 MeV, while the sixth-pass spectra has its second peak at 5.2205 MeV.  One possibility is that the $^{235}U$ in the pebble is more likely to undergo fission in a homogenized pebble, which disperses the $^{235}U$ atoms in what is almost pure graphite.
+In fact, the coolant and core spectra likely provided a better understanding of the effect of homogenization on neutron energy spectra. The coolant spectra differed after the thermal peak in a magnitude and shape matching the differences in core spectra --- showing that the homogeneous model is over-predicting the magnitude of the faster neutron energy range by around 5\%.  Unlike the core, however, the coolant has much closer agreement at lower energy levels, including at the thermal peak.  The reflector shows a slight over estimation for the homogeneous spectra, which is consistent for all but the highest energy levels (where low tallies in the compared spectra may be the cause).
 
 
 
@@ -145,7 +147,7 @@ Figure \ref{fig:0-60} provides cross-sections of the geometry, and fission rate/
 
 
 \input{fig-0-60}
-One point of interest is the degree to which the region from 0 to 60 degrees matches the same region in the control fission rate mesh.  An image subtraction program generated Figure \ref{fig:htgr-diff} by subtracting the radial meshes for the control (Figure \ref{fig:controlb}) and first symmetry test (Figure \ref{fig:0-60-rm}).(best phrase?)
+One point of interest is the degree to which the region from 0 to 60 degrees matches the same region in the control fission rate mesh.  An image subtraction program generated Figure \ref{fig:htgr-diff} by subtracting the radial meshes for the control (Figure \ref{fig:controlb}) and first symmetry test (Figure \ref{fig:0-60-rm}).
 
 \input{fig-htgr-diff}
 

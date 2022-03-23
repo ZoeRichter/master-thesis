@@ -2,6 +2,8 @@
 \label{app-shuf}
 Appendix B contains the geometry cross sections, fission rate/thermal flux meshes, and image difference results from the shuffling tests (see \autoref{meth-sens}, Table \ref{table:shuffle}), which were omitted from the main report for brevity.
 
+Comparing the image difference results of Appendix B, the shuffling test, to Appendix A, the symmetry test, shows that the shuffling tests have a weaker effect on the fission rate and thermal flux than the symmetry tests.  The small differences in this particular test would most likely indicate that the core is generally well-mixed, i.e., that each bin in the vertical direction, along the z axis, has each of the 7 fuel compositions represented equally.
+
 
 \input{fig-1234560}
 \input{fig-1234560-diff}
@@ -33,9 +35,7 @@ Figure \ref{fig:5601234} provides the thermal flux and fission rate meshes and g
 
 Figure \ref{fig:6012345} provides the thermal flux and fission rate meshes and geometric cross sections axially and radially.  Figure \ref{fig:diff-6012345} is the result of the image difference between the full core control mesh and Figure \ref{fig:6012345-rm}.
 
-Comparing the image difference results of Appendix B, the shuffling test, to Appendix A, the symmetry test, shows that the shuffling tests have a weaker effect on the fission rate and thermal flux than the symmetry tests.  The small differences in this particular test would most likely indicate that the core is generally well-mixed, i.e., that each bin in the vertical direction, along the z axis, has each of the 7 fuel compositions represented equally.
-
-There are however, a few hotspots, where small regions show a brighter patch of green.  The best example of this is in the fourth quadrant of Figure \ref{fig:diff-6012345}, near the $270^{\circ}$ line.  Hotspots such as this could be caused by poor mixing, which would make some pebbles occur in higher concentrations (and then cause a larger difference in the shuffle test, when the same region is now dominated by a different burnup) or by the shuffling putting a different pebble burnup in a region of lower or higher flux.  To investigate the source of this, the pebbles in a ~10 cm square column (10 cm in x and y, the height of the reactor in z) around the hotspot were found.  Table \ref{table:10cmpebb} shows the count of each pebble burnup.
+There are a few hotspots where small regions show a brighter patch of green.  The best example of this is in the fourth quadrant of Figure \ref{fig:diff-6012345}, near the $270^{\circ}$ line.  Hotspots such as this could be caused by poor mixing, which would make some pebbles occur in higher concentrations (and then cause a larger difference in the shuffle test, when the same region is now dominated by a different burnup) or by the shuffling putting a different pebble burnup in a region of lower or higher flux.  To investigate the source of this, the pebbles in a ~10 cm square column (10 cm in x and y, the height of the reactor in z) around the hotspot were found.  Table \ref{table:10cmpebb} shows the count of each pebble burnup.
 
 \input{table-10cmpebbs}
 
