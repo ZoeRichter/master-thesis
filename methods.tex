@@ -24,11 +24,11 @@ The single pebbles are the only simulations that utilize individually defined TR
 
 \input{table-mat-params}
 
-Table \ref{table:mat-params} above give the densities of all solid materials in the model.  The density of the helium coolant was calculated using the ideal gas law \cite{levine_derivation_nodate}.  The graphite reflector properties are assumed to be the same as the buffer layer in TRISO particles (which is assumed to have the same properties as the graphite matrix in the pebbles).
+Table \ref{table:mat-params} gives the densities of all solid materials in the model.  The density of the helium coolant was calculated using the ideal gas law \cite{levine_derivation_nodate}.  The graphite reflector properties are assumed to be the same as the buffer layer in TRISO particles (which is assumed to have the same properties as the graphite matrix in the pebbles).
 
 \input{fig-pebble-zone}
 
-Above, Figure \ref{fig:pebb-zone1} shows the fueled vs non-fueled regions of the pebbles, while Table \ref{table:peb-params} provides the geometric measurements of the pebbles.  For homogenized pebbles, the "fuel zone" is the homogenized center consisting of dispersed TRISO particle material blended with graphite, while the non-fueled region is pure graphite.  Each region homogenized by volume fraction uses the "mix" card (see \cite{leppanenjaakko_serpent_2015}) in Serpent to blend the fuel, TRISO layer, and graphite matrix materials.  In heterogenized models, the fueled region marks the part of the pebble where TRISO particles are located inside a graphite matrix, and the non-fuel region is the area of pure graphite that surrounds it.  Below, Figure \ref{fig:particle-layer} and Table \ref{table:particle-params} give detailed measurements on geometric dimensions of a TRISO particle and its layers, and gives a visual reference.  Figures \ref{fig:particle-layer} and \ref{fig:pebb-zone1} are both to scale.
+Figure \ref{fig:pebb-zone1} shows the fueled vs non-fueled regions of the pebbles, while Table \ref{table:peb-params} provides the geometric measurements of the pebbles.  For homogenized pebbles, the "fuel zone" is the homogenized center consisting of dispersed TRISO particle material blended with graphite, while the non-fueled region is pure graphite.  Each region homogenized by volume fraction uses the "mix" card (see \cite{leppanenjaakko_serpent_2015}) in Serpent to blend the fuel, TRISO layer, and graphite matrix materials.  In heterogeneous models, the fueled region marks the part of the pebble where TRISO particles are located inside a graphite matrix, and the non-fuel region is the area of pure graphite that surrounds it.  Figure \ref{fig:particle-layer} and Table \ref{table:particle-params} give detailed measurements on geometric dimensions of a TRISO particle and its layers, and gives a visual reference.  Figures \ref{fig:particle-layer} and \ref{fig:pebb-zone1} are both to scale.
 
 \input{fig-part-layer}
 
@@ -41,7 +41,7 @@ The design approximates the exact isotopic composition by running a burnup calcu
 
 \input{fig-burn-20}
 
-Figure \ref{fig:burn-20} is a cross-sectional slice of the pebble used in the depletion runs performed by Serpent.  With seven depletion states in total --- one for each pass, plus one for the fresh fuel --- we subsequently have seven unique pebble compositions.  Both the Sangamon20 and Sangamon200 models use this method to generate the necessary isotopic compositions, though they have a different starting enrichment (see \ref{table:params1} in the fresh pebbles.
+Figure \ref{fig:burn-20} is a cross-sectional slice of the pebble used in the depletion runs performed by Serpent.  With seven depletion states in total --- one for each pass, plus one for the fresh fuel --- we subsequently have seven unique pebble compositions.  Both the Sangamon20 and Sangamon200 models use this method to generate the necessary isotopic compositions, though they have a different starting enrichment (see \ref{table:params1} in the fresh pebbles).
 
 
 \section{Sangamon200}
@@ -50,21 +50,21 @@ The top and bottom of the reactor core are a flat surface, to create a cylindric
 
 \input{param-table1}
 
-While Sangamon200 is not the focus of this assessment, some parameters were used to develop the Sangamon20's design.  We used the outward current of the reflector to constrain the Sangamon20 design such that the external exposure of the 20 MWth design was less than or equal to the 200 MWth design.  To do so, a surface detector placed in the reflector, just inside the outer bound of the reflector, shown in Figure \ref{fig:det-place}, to tally the outward neutron current.  When determining the appropriate reflector thickness in Sangamon20, this current is used as an upper boundary and reference point --- that is, the graphite reflector must not only be sufficient to keep the reactor critical, but must also keep the outward surface current less than or equal to Sangamon200's to protect the \acrshort{rpv}.
+While Sangamon200 is not the focus of this assessment, some parameters were used to develop the Sangamon20's design.  We used the outgoing partial current of the reflector to constrain the Sangamon20 design such that the external exposure of the 20 MWth design was less than or equal to the 200 MWth design.  To do so, a surface detector placed in the reflector, just inside the outer bound of the reflector, shown in Figure \ref{fig:det-place}, to tally the outgoing neutron current.  When determining the appropriate reflector thickness in Sangamon20, this current is used as an upper boundary and reference point --- that is, the graphite reflector must not only be sufficient to keep the reactor critical, but must also keep the outgoing surface current less than or equal to Sangamon200's to protect the \acrshort{rpv}.
 
 \input{fig-det-place}
 
-In Figure \ref{fig:det-place}, the graphite reflector outer boundary is shown, with the surface detector shell shown inside of it.  The active core region, which contains the fuel pebbles, is the innermost cylindrical region.  Its height is 2 $\left[cm\right]$ less than that of the reflector (e.g., the top of the detector is 1 $\left[cm\right]$ below the top of the reflector) and the radius is 1 $\left[cm\right]$ less than that of the reflector.  This detector measures the outward neutron current in $\left[\frac{neutrons}{s}\right]$.  To arrive at the unit of $\left[\frac{\#}{cm^2s}\right]$ most are familiar with, we divide by the detector's surface area thus:
+In Figure \ref{fig:det-place}, the graphite reflector outer boundary is shown, with the surface detector shell shown inside of it.  The active core region, which contains the fuel pebbles, is the innermost cylindrical region, while the reflector is the region surrounding it.  The surface detector's height is 2 $\left[cm\right]$ less than that of the reflector (e.g., the top of the detector is 1 $\left[cm\right]$ below the top of the reflector) and the radius is 1 $\left[cm\right]$ less than that of the reflector.  This detector measures the outgoing neutron current in $\left[\frac{neutrons}{s}\right]$.  To arrive at the unit of $\left[\frac{\#}{cm^2s}\right]$ most are familiar with, we divide by the detector's surface area thus:
 
 \begin{align}
 J^+ &= \frac{J_s^+ }{S_{d}}
 \intertext{where}
-J^+&= \mbox{ outward neutron current $\left[\frac{\#}{cm^2s}\right]$}\nonumber\\
-J_s^+&= \mbox{ surface unadjusted outward neutron current $\left[\frac{\#}{s}\right]$}\nonumber\\
+J^+&= \mbox{ outgoing neutron current $\left[\frac{\#}{cm^2s}\right]$}\nonumber\\
+J_s^+&= \mbox{ surface unadjusted outgoing neutron current $\left[\frac{\#}{s}\right]$}\nonumber\\
 S_{d}&=\mbox{ detector surface area $[cm^2]$}\nonumber
 \end{align}
 
-After accounting for the surface area, the outward current at the detector in Sangamon200 is $9.156\times 10^{11} \pm 1.099\times 10^{09} \left[\frac{n}{cm^{2}s}\right]$.
+After accounting for the surface area, the outgoing current at the detector in Sangamon200 is $9.156\times 10^{11} \pm 1.099\times 10^{09} \left[\frac{n}{cm^{2}s}\right]$.
 
 \section{Sangamon20}
 \label{s20}
@@ -73,7 +73,7 @@ Sangamon20 has identical material properties to Sangamon200, with the exception 
 
 \subsection{Graphite Reflector Thickness Determination}
 
-As discussed in \autoref{s200}, the outward neutron current at the outer reflector boundary --- where the \acrshort{rpv} would be --- is used as the maximum acceptable value for outward neutron current in Sangamon20.  Figure \ref{fig:curr-v-ref} below provides the outward neutron current at the reflector boundary in Sangamon20 versus the thickness of the reflector.
+As discussed in \autoref{s200}, the outgoing neutron current at the outer reflector boundary --- where the \acrshort{rpv} would be --- is used as the maximum acceptable value for outgoing neutron current in Sangamon20.  Figure \ref{fig:curr-v-ref} below provides the outgoing neutron current at the reflector boundary in Sangamon20 versus the thickness of the reflector.
 
 \input{fig-jvrdet}
 
@@ -137,25 +137,25 @@ Using the formula for the volume of a cylinder, one can plot possible sets of $r
 
 \input{fig-rh-vol}
 
-The most critical configurations for a cylinder are either a \emph{square} shape, in which the height is equal to the diameter, or a \emph{flat} shape in which diameter is significantly greater than height.  As most designs use a height that is greater than or equal to the diameter, Sangamon20 is a square cylinder.  A packing fraction of 0.56 was ultimately chosen for Sangamon20 as it is the closest packing fraction to Sangamon200 while still staying in the range appropriate for haphazard packing.  The point indicated in \ref{fig:rh-vol} shows the radius and height selected for Sangamon20 - a radius of 90 $\left[cm\right]$, and a height of 180 $\left[cm\right]$.
+One of the most critical configurations for a cylinder is a \emph{square} shape, in which the height is equal to the diameter.  As most designs use a height that is greater than or equal to the diameter, Sangamon20 is a square cylinder.  A packing fraction of 0.56 was ultimately chosen for Sangamon20 as it is the closest packing fraction to Sangamon200 while still staying in the range appropriate for haphazard packing.  The point indicated in \ref{fig:rh-vol} shows the radius and height selected for Sangamon20 - a radius of 90 $\left[cm\right]$, and a height of 180 $\left[cm\right]$.
 
 
 \section{Heterogenization Tests}
 \label{het-test-meth}
 
-As described above, the pebbles use the approximation of a homogenized 'fueled-center', to reduce computational load.  This can, however, make the results of the simulation less accurate.  To determine the degree to which this affects reactor parameters such as $k_{eff}$ or outward neutron current, a few simulations performed undid this change, explicitly defining all TRISO particles in the pebbles, as they are in the single-pebble (infinite lattice) depletion models which generated the equilibrium fuel composition.  These so-called heterogenization tests compared the 2-group fast and thermal fluxes in the radial and axial direction.  In addition, they compared the lethargy-adjusted neutron energy spectrum using a 315-group energy structure.  Beyond showing the full spectra for each of these values for comparison, the relative difference is provided graphically for each so the differences induced by this change can be more readily observed.  Other than the choice to explicitly model the TRISO particles, the heterogenized model is identical to the Sangamon20 homogenized-pebble model.  The results of this test can be found in \autoref{res-hom}.
+As described above, the pebbles use the approximation of a homogenized 'fueled-center', to reduce computational load.  This can, however, make the results of the simulation less accurate.  To determine the degree to which this affects reactor parameters such as $k_{eff}$ or outward neutron current, a few simulations performed undid this change, explicitly defining all TRISO particles in the pebbles, as they are in the single-pebble (infinite lattice) depletion models which generated the equilibrium fuel composition.  These so-called heterogenization tests compared the 2-group fast and thermal fluxes in the radial and axial direction.  In addition, they compared the neutron energy spectrum using a 315-group energy structure.  Beyond showing the full spectra for each of these values for comparison, the relative difference is provided graphically for each so the differences induced by this change can be more readily observed.  Other than the choice to explicitly model the TRISO particles, the heterogenized model is identical to the Sangamon20 homogenized-pebble model.  The results of this test can be found in \autoref{res-hom}.
 
 \section{Reactor Sensitivity to Pebble Locations and Symmetry}
 \label{meth-sens}
 
-By the nature of random pebble dispersal, there are a theoretically infinite number of perturbations to the Sangamon reactor models that are no different with the exception of slight variations in pebble locations.  It is also entirely possible to have bands in the reactor such that multiple pebbles of same (or similar) burnup align to form localized lines or pockets.  In the interest of better characterizing the extent to which these may effect the neutronics, we created a series of tests to explore the effect of various pebble composition locations.  
+By the nature of random pebble dispersal, there are a theoretically infinite number of perturbations to the Sangamon reactor models that are no different with the exception of slight variations in pebble locations.  It is also entirely possible to have bands in the reactor such that multiple pebbles of same (or similar) burnup align to form localized lines or pockets.  In the interest of better characterizing the extent to which these may effect the neutronics, we created a series of tests to explore the affect of various pebble composition locations.  
 
 The \emph{shuffling} test maintained the pebble locations, but changed what composition the individual pebbles were (for results, see \autoref{res-shuff}).  As an example, Run 1 in the shuffle test makes all fresh, or "zero-pass" pebbles of the first-pass composition, first-pass pebbles of the second-pass, and so on down the line.  Run 2 makes the originally fresh (zero-pass) pebbles the second pass composition, the first-pass pebbles the third-pass composition, and so on. This scheme is described in \ref{table:shuffle}.
 
 \input{table-shuffle}
 
-The second analyzed the effects of utilizing a symmetry simplification, in order to improve computational speed (see \autoref{res-sym}) where $\frac{1}{6}$ of the core is modeled with a periodic boundary condition (neutrons exiting one side of the symmetry slice enter the other at the same height and trajectory).  We start with a full core model, and then select a slice from that core.  The slice used to simplify changed in each test, shown in Figure \ref{fig:slicetest}.  In each test, all other parameters remain the same.
+The second analyzed the effects of using a symmetry simplification, in order to improve computational speed (see \autoref{res-sym}) where $\frac{1}{6}$ of the core is modeled with a periodic boundary condition (neutrons exiting one side of the symmetry slice enter the other at the same height and trajectory).  We start with a full core model, and then select a slice from that core.  The slice used to simplify changed in each test, shown in Figure \ref{fig:slicetest}.  In each test, all other parameters remain the same.
 
 \input{fig-slice-layout}
 
-In both tests, the $k_{eff}$ and outward currents are recorded and compared to the control model's $k_{eff}$ and $J^+$ (for results please refer to \autoref{res-control}).  A full spectrum of core components wasn't performed as in the heterogenous tests, as the difference between the results of this test and the control were small compared to the heterogeneity tests.  \autoref{app} and \autoref{app-sym} contains all geometry and mesh images for each run, and a pixel-by-pixel image difference of the mesh results.
+In both tests, the $k_{eff}$ and outgoing currents are recorded and compared to the control model's $k_{eff}$ and $J^+$ (for results please refer to \autoref{res-control}).  A full spectrum of core components wasn't performed as in the heterogenous tests, as the difference between the results of this test and the control were small compared to the heterogeneity tests.  \autoref{app} and \autoref{app-sym} contains all geometry and mesh images for each run, and a pixel-by-pixel image difference of the mesh results.
