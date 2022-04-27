@@ -15,12 +15,12 @@ To understand why the differences in the active core are in green (see Figure \r
 
 Figure \ref{fig:rgb-1} gives an example of selecting a color using RGB values.  Image difference works by subtracting the RGB values from each other - for example, subtracting ( 200, 150, 50 ) from ( 100, 200, 75 ) results in ( 100, 50, 25 ).  Absolute values are used because negative values don't exist in RGB colors.  So, when  two colors which have contrasting values of green, and similar values of red and blue, the result is, of course, a shade of green.  The image difference results in the "banded" regions at the outermost edges of the active core shift to blue from green simply because in the original images this region is already in the yellow to white color range, and so the only RGB value that changes is blue.
 
-One can image the two extremes that an image difference could give - pure black, or RGB (0, 0, 0) means the two images were identical at that particular pixel.  Meanwhile, pure white --- (255, 255, 255) --- is the greatest possible difference that could exist.  Therefore, when interpreting the image difference results in Appendix A and Appendix B, it is important to keep in mind that the specific \emph{color} the differences are shown in --- usually green, but also blue or, rarely, red --- are far less important than how bright, or intense, these colors are.
+One can imagine the two extremes that an image difference could give - pure black, or RGB (0, 0, 0) means the two images were identical at that particular pixel.  Meanwhile, pure white --- (255, 255, 255) --- is the greatest possible difference that could exist.  Therefore, when interpreting the image difference results in \autoref{app-sym} and \autoref{app-shuf}, it is important to keep in mind that the specific \emph{color} the differences are shown in --- usually green, but also blue or, rarely, red --- are far less important than how bright, or intense, these colors are.
 
 \section{Symmetry Test}
 \label{app-sym}
 
-Appendix A contains the geometry cross sections, fission rate/thermal flux meshes, and image difference results from the other symmetry tests, corresponding to Run 2 through Run 5 in Figure \ref{fig:slicetest}.  These symmetry test use an otherwise identical core model and set of run parameters (see \autoref{sec-run-params}) for the Sangamon20 core model.  Image difference for each run compares to the Sangamon20 control model results.
+\autoref{app-sym} contains the geometry cross sections, fission rate/thermal flux meshes, and image difference results from the other symmetry tests, corresponding to Run 2 through Run 5 in Figure \ref{fig:slicetest}.  These symmetry test use an otherwise identical core model and set of run parameters (see \autoref{sec-run-params}) for the Sangamon20 core model.  Image difference for each run compares to the Sangamon20 control model results.
 
 
 \input{fig-60-120}
