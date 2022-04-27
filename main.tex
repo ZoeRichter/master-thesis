@@ -1,7 +1,7 @@
 \documentclass[edeposit,fullpage]{uiucthesis2018}
 %% Package and Class "uiucthesis2014" for use with LaTeX2e.
 
-%\usepackage[utf8]{inputenc}
+\usepackage[utf8]{inputenc}
 
 
 \usepackage[acronym,toc]{glossaries}
@@ -17,7 +17,7 @@
 
 \usepackage{placeins}
 \usepackage{booktabs} % nice rules (thick lines) for tables
-\usepackage{microtype} % improves typography for PDF
+\usepackage{microtype} % improves typography for PDF 
 
 \usepackage[hyphens]{url}
 \usepackage[hidelinks]{hyperref}
@@ -72,8 +72,11 @@
 
 \usepackage{cleveref}
 \usepackage{datatool}
-\usepackage[numbers]{natbib}
+%\usepackage[numbers]{natbib}
 \usepackage{notoccite}
+
+\usepackage[citestyle=numeric,bibstyle=numeric]{biblatex}
+\addbibresource{bibliography.bib}
 
 \usepackage{tikz}
 \usetikzlibrary{positioning, arrows, decorations, shapes, shadings}
@@ -163,9 +166,10 @@ Pebble-bed \acrfull{htgr} designs present a unique modeling challenge.  Pebble-b
 \input{conclusion}
 
 \backmatter
-\nocite{*}
-\bibliographystyle{apa}
-\bibliography{bibliography}
+%\nocite{*}
+%\bibliographystyle{plaindin}
+%\bibliography{bibliography}
+\printbibliography
 
 \mainmatterWithoutReset
 \appendix

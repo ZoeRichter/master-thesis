@@ -1,4 +1,4 @@
-This chapter introduces modeling and design details of Sangamon reactors:  the Sangamon200, and a scaled-down version, the Sangamon20; inspired by the pebble bed designs of the PBMR \cite{venter_pbmr_2005, noauthor_pebble_2017}, Xe-100 \cite{harlan_ans_2017, harlan_x-energy_2018}, and the smaller size of the HTR-10.  Both Sangamon200 and Sangamon20 are UCO-pebble fueled, helium cooled reactors.  All simulations used Serpent version 2 \cite{leppanenjaakko_serpent_2015} with postprocessing and analysis performed using Python \cite{van_rossum_python_nodate} and the Python libraries numpy \cite{harris_array_2020} and PyNE \cite{scopatz_pyne:_2012}.
+This chapter introduces modeling and design details of Sangamon reactors:  the Sangamon200, and a scaled-down version, the Sangamon20; inspired by the pebble bed designs of the PBMR \cite{venter_pbmr_2005}, Xe-100 \cite{harlan_ans_2017, harlan_x-energy_2018}, and the smaller size of the HTR-10.  Both Sangamon200 and Sangamon20 are UCO-pebble fueled, helium cooled reactors.  All simulations used Serpent version 2 \cite{leppanenjaakko_serpent_2015} with postprocessing and analysis performed using Python \cite{van_rossum_python_2009} and the Python libraries numpy \cite{harris_array_2020} and PyNE \cite{scopatz_pyne:_2012}.
 
 Before one can confidently analyze reactor physics and safety, it is important to ensure the models used are reliably defined and well-understood.  To this end, \autoref{sec:dispersal} and \autoref{sec-run-params} will lay the foundation for the model, describing mechanics of the particle dispersal routine and the Monte Carlo run parameters.  The following sections, \autoref{meth-burn} and \autoref{meth-comp}, detail the single-pebble models, which are used to find the fuel compositions used in the full-core models.  The full-core models themselves are described in \autoref{s200} and \autoref{s20}.  Finally, the last sections of this chapter detail the various effects we test by perturbing the Sangamon20 model.
 
@@ -24,7 +24,7 @@ The single pebbles are the only simulations that utilize individually defined TR
 
 \input{table-mat-params}
 
-Table \ref{table:mat-params} gives the densities of all solid materials in the model.  The density of the helium coolant was calculated using the ideal gas law \cite{levine_derivation_nodate}.  The graphite reflector properties are assumed to be the same as the buffer layer in TRISO particles (which is assumed to have the same properties as the graphite matrix in the pebbles).
+Table \ref{table:mat-params} gives the densities of all solid materials in the model.  The density of the helium coolant was calculated using the ideal gas law \cite{mortimer_behavior_2008}.  The graphite reflector properties are assumed to be the same as the buffer layer in TRISO particles (which is assumed to have the same properties as the graphite matrix in the pebbles).
 
 \input{fig-pebble-zone}
 
@@ -122,7 +122,7 @@ n_{T}&= \mbox{ number of TRISO particles in a single pebble [-]}\nonumber\\
 \\
 Rounding up - there can only be complete pebbles - we arrive at the number of pebbles for the Sangamon20 that are reported in Table \ref{table:params1}.
 
-Knowing the number of pebbles is insufficient - the exact dimensions of the active core region are still undefined.  To determine the volume of this space, the formula uses concept of the packing fraction.  Assuming the pebble behavior is random loose packing \cite{tulluri_analysis_nodate} - the pebbles have unsystematically fallen into the core and the core is unshaken - the packing fraction in the range of 0.56 to 0.60 \cite{tulluri_analysis_nodate}.  Using the definitions above, the active core volume is
+Knowing the number of pebbles is insufficient - the exact dimensions of the active core region are still undefined.  To determine the volume of this space, the formula uses concept of the packing fraction.  Assuming the pebble behavior is random loose packing \cite{tulluri_analysis_2003} - the pebbles have unsystematically fallen into the core and the core is unshaken - the packing fraction in the range of 0.56 to 0.60 \cite{tulluri_analysis_2003}.  Using the definitions above, the active core volume is
 
 \begin{align}
 V_{c,20} &= \frac{ n_{p,20}\frac{4}{3}\pi r_{p}^3 }{ \eta_{pf} }

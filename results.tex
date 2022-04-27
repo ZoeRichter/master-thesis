@@ -4,7 +4,7 @@ This chapter presents the results of the tests described in \autoref{s20},  \ref
 \section{Fuel Isotopic Compositions}
 \label{res-comps}
 
-Figure \ref{fig:burn-meshes} depicts the evolution of the fission rate (hot color map) and thermal flux (cold color map) over the seven stages of burnup that we chose to model.  The maximum cutoff for thermal flux is 0.625 eV in these figures.  Over successive depletion steps, the fission rate and thermal flux increases.  Is is not unexpected --- as the pebble burns, the atomic fraction of fissile $^{235}U$ decreases, which results in a greater fission rate at each time step.  At the same time, the reduction of fissile isotopes and build up of fission products means the neutrons can have a longer lifetime before undergoing capture, resulting in a more thermalized spectrum.
+Figure \ref{fig:burn-meshes} depicts the evolution of the fission rate (hot color map) and thermal flux (cold color map) over the seven stages of burnup that we chose to model.  The maximum cutoff for thermal flux is 0.625 eV in these figures.  Over successive depletion steps, the fission rate and thermal flux increases.  This is not unexpected --- as the pebble burns, the atomic fraction of fissile $^{235}U$ decreases.  This requires that the fission rate increase to maintain criticality.  Notably, the fission rate mesh for the six-month depletion step has fewer points indicating higher values when compared to the initial depletion step; however, the scales of these images are not uniform, and this is likely indicative of the fission rate profile within the six-pass pebble flattening.
 
 \input{fig-burn-20-mesh}
 
@@ -33,7 +33,7 @@ Figure \ref{fig:controlb} shows bands of concentric rings around the outer edges
 
 In Figure \ref{fig:controld} we can see a similar banding effect on the top and bottom edge of the core region, but not on the sides.  No hot-spots on the edges because Figure \ref{fig:controld} is in the xz plane, and integrates over y.  However, for a cylinder, the distance integrated over is not the same at all points.  At the centerline, the distance is simply the diameter.  However, as you move towards the edge, the distance integrated over approaches zero.  So, while these plots can help provide some insight into the core, one must be very careful to keep this uneven integration area in mind when interpreting them.
 
-Figures \ref{fig:hom-det-xy} and \ref{fig:hom-det-z} provide the fast and thermal flux profiles in the control model of Sangamon20, which uses homogenized pebbles, at the axial and radial (x-direction) centerlines, respectively.
+Figures \ref{fig:hom-det-xy} and \ref{fig:hom-det-z} provide the fast and thermal flux profiles in the control model of Sangamon20, which uses homogenized pebbles, at the axial and radial (x-direction) centerlines, respectively.  Bin size in the detectors was selected based on reactor geometry and the average diffusion length of neutrons in graphite \cite{hereward_measurement_1947}.
 
 \input{fig-hom-det-xy}
 \input{fig-hom-det-z}
@@ -57,7 +57,7 @@ In addition to centerline fast and thermal flux profiles, Figures \ref{fig:hom-p
 
 A slight banding pattern on the active core's edge exists --- primarily in the fast, rather than thermal, flux --- but with less intensity than the fission rate banding.  In the thermal flux, we see that the peak in \ref{fig:hom-det-xy} continues in a circular pattern surrounding the active core, approximately 10 cm into the graphite reflector.  The steep drop-off in fast flux once within the outer reflector, meanwhile, is clearer in \ref{fig:hom-plane-fast}.  Once again, Figure \ref{fig:hom-plane-fast} and Figure \ref{fig:hom-plane-therm} show that while the banding morphology may be present in the fission rate profile (and do cause a slight increase relative to the region immediately surrounding it) it does not cause concentric spikes in the flux profiles.
 
-Figure \ref{fig:hom-all} presents the energy spectra in the reflector, coolant, overall core, and a randomly selected fresh and sixth-pass pebble.  The results are per unit lethargy and use the Tripoli 315-group energy structure \cite{noauthor_tripoli_nodate} to set energy bin boundaries.  This group structure was chosen not only because there were a sufficient number of bins to provide the desired fidelity, but also because the highest fidelity regions (smallest bin size) in the spectrum were in the lower energy values, which is of greater interest to a thermal spectrum reactor.
+Figure \ref{fig:hom-all} presents the energy spectra in the reflector, coolant, overall core, and a randomly selected fresh and sixth-pass pebble.  The results are per unit lethargy and use the Tripoli 315-group energy structure \cite{brun_tripoli-4_2015} to set energy bin boundaries.  This group structure was chosen not only because there were a sufficient number of bins to provide the desired fidelity, but also because the highest fidelity regions (smallest bin size) in the spectrum were in the lower energy values, which is of greater interest to a thermal spectrum reactor.
 
 \input{fig-hom-spec-core-ref}
 
@@ -119,7 +119,7 @@ i_{hom}&= \mbox{ homogenized parameter i}\nonumber\\
 i_{het}&= \mbox{ heterogenized parameter i}\nonumber\\
 \end{align}
 
-And error calculation followed error propagation rules as shown in  \cite{noauthor_uncertainties_nodate}.
+And error calculation followed error propagation rules as shown in  \cite{taylor_chapter_1997}.
 
 
 \input{fig-diff-flux}
