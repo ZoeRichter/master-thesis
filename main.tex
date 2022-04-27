@@ -3,6 +3,7 @@
 
 \usepackage[utf8]{inputenc}
 
+\usepackage[toc, titletoc, title]{appendix}
 
 \usepackage[acronym,toc]{glossaries}
 \makeglossaries
@@ -172,12 +173,16 @@ Pebble-bed \acrfull{htgr} designs present a unique modeling challenge.  Pebble-b
 \printbibliography
 
 \mainmatterWithoutReset
-\appendix
-\chapter{}
+%\appendix
+%\chapter{}
+\begin{appendices}
+\chapter*{Appendices}
+\renewcommand{\thesection}{\Alph{section}}
 \input{appendix}
 
-\chapter{}
+%\chapter{}
 \input{appendixB}
+\end{appendices}
 
 
 \end{document}
