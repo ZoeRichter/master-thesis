@@ -1,9 +1,14 @@
-%% Package and Class "uiucthesis2014" for use with LaTeX2e.
 \documentclass[edeposit,fullpage]{uiucthesis2018}
+%% Package and Class "uiucthesis2014" for use with LaTeX2e.
 
- 
+\usepackage[utf8]{inputenc}
+
+\usepackage[toc, titletoc, title]{appendix}
+
 \usepackage[acronym,toc]{glossaries}
+\makeglossaries
 \include{acros}
+
 
 \usepackage{xspace}
 \usepackage{graphics}
@@ -13,10 +18,15 @@
 
 \usepackage{placeins}
 \usepackage{booktabs} % nice rules (thick lines) for tables
-\usepackage{microtype} % improves typography for PDF
+\usepackage{microtype} % improves typography for PDF 
 
 \usepackage[hyphens]{url}
 \usepackage[hidelinks]{hyperref}
+
+\renewcommand{\sectionautorefname}{Section}
+\renewcommand{\subsectionautorefname}{Subsection}
+\renewcommand{\chapterautorefname}{Chapter}
+
 %\usepackage{subfig}
 \usepackage{hhline}
 \usepackage{amsmath}
@@ -59,13 +69,18 @@
 \newcolumntype{s}{>{\hsize=.5\hsize}X}
 \newcolumntype{m}{>{\hsize=.75\hsize}X}
 
+\usepackage{longtable}
+
 \usepackage{cleveref}
 \usepackage{datatool}
-\usepackage[numbers]{natbib}
+%\usepackage[numbers]{natbib}
 \usepackage{notoccite}
 
+\usepackage[citestyle=numeric,bibstyle=numeric]{biblatex}
+\addbibresource{bibliography.bib}
+
 \usepackage{tikz}
-\usetikzlibrary{positioning, arrows, decorations, shapes}
+\usetikzlibrary{positioning, arrows, decorations, shapes, shadings}
 
 \usetikzlibrary{shapes.geometric,arrows}
 \tikzstyle{process} = [rectangle, rounded corners, minimum width=2.5cm, minimum height=1cm,text centered, draw=black, fill=blue!30]
@@ -76,17 +91,22 @@
 \tikzstyle{empty} =  [rectangle, rounded corners, minimum width=2.5cm, minimum height=0.7cm,text centered, draw=black, fill=white!30]
 \tikzstyle{arrow} = [thick,->,>=stealth]
 
+\newcommand\mainmatterWithoutReset
+ {\edef\temppagenumber{\arabic{page}}%
+  \mainmatter
+  \setcounter{page}{\temppagenumber}%
+ }
 
-\title{---}
+\title{Isotopic and Reactor Physics Characterization of a Gas-Cooled, Pebble-Bed Microreactor}
 \author{Zo{\"e} Richter}
 \department{Nuclear, Plasma, Radiological Engineering}
 \schools{B.S., University of Illinois - Urbana Champaign, 2018}
 \msthesis
-\advisor{Kathryn D. Huff}
+\advisor{Madicken Munk}
 \degreeyear{2021}
-\committee{Professor Kathryn D. Huff \\ Dr. Madicken Munk}
+\committee{Dr. Madicken Munk \\ Dr. Tomasz Kozlowski}
 
-%% Template created by Charles Bae, 2018
+% Template created by Charles Bae, 2018
 
 \begin{document}
 \maketitle
@@ -95,13 +115,12 @@
 %% Create an abstract that can also be used for the ProQuest abstract.
 %% Note that ProQuest truncates their abstracts at 350 words.
 \begin{abstract}
-Pebble-bed HTGR designs present a unique modeling challenge.  Pebble-beds can have a variety of pebble compositions due to varying levels of burnup, and the pebbles are mobile in the core- entering from the top and exiting through the bottom - and may fall in a haphazard arrangement.  This work introduces a simple 20 MWth pebble-bed HTGR reactor design (named Sangamon20) and investigates not only the neutronics of the base model, but the changes to core neutronics after making changes to the simulation: heterogenizing versus homogenizing the pebble center, imposing a symmetry assumption, and changing the arrangement of pebble fuel compositions, all using Serpent 2 and Python.  In contrast to previous works using a uniform lattice and single pebble composition, Sangamon20 uses a random dispersal of seven different pebble compositions, each corresponding to a different level of burnup.  The heterogenization tests compare $k_{eff}$, thermal and fast flux profiles, and the neutron lethargy-adjusted energy spectra in the whole-core, reflector, coolant, and a randomly chosen fresh and discharge-burnup pebble.  Shuffling and symmetry tests monitor changes to $k_{eff}$ and the outward neutron current at the outer reflector boundary.  These two tests caused a minor (less than 0.65\%) difference in either.  However, for the heterogenization tests, $k_{eff}$ differed by over 4.0\%, and the pebble spectra at certain higher energies disagreed by a factor of 2-4.  A complete fuel isotopic composition is accessible at ***ref comps zenodo***, and this thesis discusses select isotopic inventories.
+Pebble-bed \acrfull{htgr} designs present a unique modeling challenge.  Pebble-bed reactors can have a variety of pebble compositions due to varying levels of burnup.  In addition, the pebbles are mobile in the core --- entering from the top and exiting through the bottom --- and may fall in a haphazard arrangement.  This work introduces a 20 MWth pebble-bed HTGR reactor design (which will be referred to as Sangamon20) that is representative of current pebble bed reactors, and investigates not only the neutronics of the base model, but the changes to core neutronics after making modifications to the simulation.  These modifications include: heterogenous versus homogenous pebble centers, imposing a universal symmetry assumption, and changing the arrangement of pebble fuel compositions, using Serpent and Python.  This is in support of the ultimate goal of this project: to establish a baseline source term and to determine what simplifications, if any, can be made in the model to strike a balance between computational cost and precision of the results.  This is crucial for any future licensing effort, safety analysis, or accident analysis involving pebble-bed reactors.  The model of Sangamon20 uses a random dispersal of seven different pebble compositions, each corresponding to a different burnup level.  The heterogeneous tests compare $k_{eff}$; thermal and fast flux profiles; and the neutron lethargy-adjusted energy spectra in the core, reflector, coolant, a random fresh, and a random discharge-burnup pebble.  Shuffling and symmetry tests monitor changes to $k_{eff}$ and the outgoing neutron current at the outer reflector boundary; the former because it is an important reactor physics parameter, and the latter because it can be used to find the anticipated neutron flux the \acrfull{rpv} would experience.  This informs the level of radiation damage one could expect the \acrshort{rpv} to experience each year - which is useful from a design and safety perspective.  Neither the symmetry test nor the shuffling test showed a major difference in either the $k_{eff}$ or the outward neutron current at the outer edge of the reflector.  This would suggest that there is no need to simulate all possible pebble placements to characterize a reactor.  However, for the heterogeneous tests, $k_{eff}$ differed by 4.45\%, and the pebble spectra at certain higher energies disagreed by a factor of 2-4.  A complete fuel isotopic composition at each burnup step is accessible at \cite{richter_isotopic_2021}. This thesis discusses select isotopic inventories of interest.  These can be used to inform source term determination or spent fuel compositions.
 
 \end{abstract}
 
 \chapter*{Acknowledgments}
 \input{acks}
-Acks.
 
 %% The thesis format requires the Table of Contents to come
 %% before any other major sections, all of these sections after
@@ -117,11 +136,14 @@ Acks.
 \tableofcontents
 \listoftables
 \listoffigures
+\addcontentsline{toc}{chapter}{List of Acronyms}
 
 %% Create a List of Abbreviations. The left column
 %% is 1 inch wide and left-justified
-%\chapter{List of Abbreviations}
-%\printglossaries
+\chapter*{List of Abbreviations}
+\input{acros-list}
+%\printglossary
+%\printglossary[type=\acronymtype, title=List of Acronyms, toctitle=List of Acronyms]
 %% Create a List of Symbols. The left column
 %% is 0.7 inch wide and centered
 
@@ -135,6 +157,7 @@ Acks.
 \input{litreview}
 
 \chapter{Methodology}
+\label{sec:methods}
 \input{methods}
 
 \chapter{Results}
@@ -143,13 +166,24 @@ Acks.
 \chapter{Conclusion}
 \input{conclusion}
 
-\chapter*{Appendix}
+\backmatter
+%\nocite{*}
+%\bibliographystyle{plaindin}
+%\bibliography{bibliography}
+\printbibliography
+
+\mainmatterWithoutReset
+%\appendix
+%\chapter{}
+\begin{appendices}
+\chapter*{Appendices}
+\renewcommand{\thesection}{\Alph{section}}
 \input{appendix}
 
-\backmatter
-\nocite{*}
-\bibliographystyle{IEEEtran}
-\bibliography{bibliography}
+%\chapter{}
+\input{appendixB}
+\end{appendices}
+
 
 \end{document}
 \endinput
