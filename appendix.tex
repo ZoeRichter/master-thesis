@@ -1,41 +1,52 @@
-Appendix.
 
-\section{Appendix A: Symmetry Test}
+\label{app}
+
+The Appendix first provides an explanation of color theory as it pertains to digital RGB color.  This is to aid an unfamiliar reader with interpreting the many image difference results in the appendices.  \autoref{app-sym} then moves to the complete results of the symmetry test, which were omitted from the main body of the report for the sake of brevity. 
+
+\section{Image Difference and RGB Color}
+\label{app-rgb}
+To help explain the color difference plots later in the Appendix, it may be helpful to go into further depth on RGB (red, green,blue) based colors and how the individual values correspond to colors when mixed.
+
+In the RGB color format, values for red, green, and blue can range from 0 to 255.  The higher the value for a color, the more of it is present in the resulting color.  If the values for red, green, and blue are the same, then the resulting color is a shade of grey.  If all values are set to their maximum, 255, then the result is pure white.  If all values are 0, then the result is pure black.  In general, colors with low RGB values are darker than  ones with greater RGB values.
+
+To understand why the differences in the active core are in green (see Figure \ref{fig:120-180-diff} for an example), it is useful to revisit color theory and complementary colors.  The fission rate meshes are shown in a hot color map, which ranges in color from an almost-white shade of yellow, to very dark browns.  In between these maximum and minimum shades are varying shades of yellow, orange, and brown.  To create a shade of yellow in RGB format, one uses a large amount of red and green.  To create the sort of almost-white yellow, one simply takes the base yellow, with large amounts of red and green, and increases the blue value (which, as described before, will transition the color to a lighter shade as all three RGB values approach the maximum of 255).  To move from yellow to an orangey-brown, one shifts the green value down.  Lowering red and green while keeping blue at a low value produces the darkest shades of brown seen in the color map.
+
+\input{fig-rgb-1}
+
+Figure \ref{fig:rgb-1} gives an example of selecting a color using RGB values.  Image difference works by subtracting the RGB values from each other - for example, subtracting ( 200, 150, 50 ) from ( 100, 200, 75 ) results in ( 100, 50, 25 ).  Absolute values are used because negative values don't exist in RGB colors.  So, when  two colors which have contrasting values of green, and similar values of red and blue, the result is, of course, a shade of green.  The image difference results in the "banded" regions at the outermost edges of the active core shift to blue from green simply because in the original images this region is already in the yellow to white color range, and so the only RGB value that changes is blue.
+
+One can imagine the two extremes that an image difference could give - pure black, or RGB (0, 0, 0) means the two images were identical at that particular pixel.  Meanwhile, pure white --- (255, 255, 255) --- is the greatest possible difference that could exist.  Therefore, when interpreting the image difference results in \autoref{app-sym} and \autoref{app-shuf}, it is important to keep in mind that the specific \emph{color} the differences are shown in --- usually green, but also blue or, rarely, red --- are far less important than how bright, or intense, these colors are.
+
+\section{Symmetry Test}
+\label{app-sym}
+
+\autoref{app-sym} contains the geometry cross sections, fission rate/thermal flux meshes, and image difference results from the other symmetry tests, corresponding to Run 2 through Run 5 in Figure \ref{fig:slicetest}.  These symmetry test use an otherwise identical core model and set of run parameters (see \autoref{sec-run-params}) for the Sangamon20 core model.  Image difference for each run compares to the Sangamon20 control model results.
+
 
 \input{fig-60-120}
 \input{fig-60-120-diff}
 
+Figure \ref{fig:60-120} provides fission rate and thermal flux visualization meshes for the symmetry test using the 60 - 120 degree slice.  Figure \ref{fig:60-120-diff} is the result of using image-difference between the control's full-core radial mesh and the symmetry test's mesh.
+
 \input{fig-120-180}
 \input{fig-120-180-diff}
 
+Figure \ref{fig:120-180} provides fission rate and thermal flux visualization meshes for the symmetry test using the 120 - 180 degree slice.  Figure \ref{fig:120-180-diff} is the result of using image-difference between the control's full-core radial mesh and the symmetry test's mesh.
 
 \input{fig-180-240}
 \input{fig-180-240-diff}
 
+Figure \ref{fig:180-240} provides fission rate and thermal flux visualization meshes for the symmetry test using the 180 - 240 degree slice.  Figure \ref{fig:180-240-diff} is the result of using image-difference between the control's full-core radial mesh and the symmetry test's mesh.
 
 \input{fig-240-300}
 \input{fig-240-300-diff}
 
+Figure \ref{fig:240-300} provides fission rate and thermal flux visualization meshes for the symmetry test using the 240 - 300 degree slice.  Figure \ref{fig:240-300-diff} is the result of using image-difference between the control's full-core radial mesh and the symmetry test's mesh.
 
 \input{fig-300-360}
 \input{fig-300-360-diff}
 
-\section{Appendix B: Shuffle Test}
+Figure \ref{fig:300-360} provides fission rate and thermal flux visualization meshes for the symmetry test using the 300 - 360 degree slice.  Figure \ref{fig:300-360-diff} is the result of using image-difference between the control's full-core radial mesh and the symmetry test's mesh.
 
-\input{fig-1234560}
-\input{fig-1234560-diff}
 
-\input{fig-2345601}
-\input{fig-2345601-diff}
-
-\input{fig-3456012}
-\input{fig-3456012-diff}
-
-\input{fig-4560123}
-\input{fig-4560123-diff}
-
-\input{fig-5601234}
-\input{fig-5601234-diff}
-
-\input{fig-6012345}
-\input{fig-6012345-diff}
+In each of the image difference results, the section of the core the symmetry assumption  uses --- for example, the portion of Figure \ref{fig:60-120-diff} in the sector from $60^{\circ}$ - $120^{\circ}$ --- is very dark.  This means that this region has very little difference between it and the same sector on the control model result.  The boundaries of these sectors in the image difference are also hard lines, not gradients, which suggests that the neutronics (specifically the fission rate) within and around pebbles closest to the boundary of the sector might not be as significantly impacted by their neighbor pebbles "changing" as expected.  The image difference results also show very little difference in the reflector region, which makes sense, as the reflector is uniform.  However, this does indicate that there wasn't a local peak in thermal flux due to, say, a mass of fresh pebbles in the representative slice.  If there were such a spike, there would likely be repeating regions of brighter "hotspots" in the reflector everywhere \emph{except} the representative sector used in the symmetry assumption.
