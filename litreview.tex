@@ -30,7 +30,7 @@ Earlier work on HTGRs by General Atomic determined the composition of discharged
 
 \section{Modern HTGRs}
 
-The following discusses more recent HTGR designs, which are the inspiration for Sangamon200 and Sangamon20.
+The following discusses more recent  HTGR designs, which are the inspiration for Sangamon200 and Sangamon20.
 
 \subsection{PBMR}
 
@@ -38,7 +38,19 @@ The PBMR is a South African pebble bed HTGR design.  While it did not ultimately
 
 \include{fig-pbmr-v-sect}
 
-Each core unit would hold around half a million pebbles, which used LEU based TRISO particles as the fuel form.  These TRISO particles are pressed into a 2.5 $\left[cm\right]$ radius graphite sphere, which then has an additional 0.5 $\left[cm\right]$ thick layer of graphite pressed around it, to form a 3.0 $\left[cm\right]$ radius pebble - around the size of a billiard ball.  The pebbles would undergo a six-pass cycle to reach a target end burnup of 92,000 $\left[\frac{MWd}{tU}\right]$ \cite{venter_pbmr_2005}. 
+Each core unit would hold around half a million pebbles, which used LEU based TRISO particles as the fuel form.  These TRISO particles are pressed into a 2.5 $\left[cm\right]$ radius graphite sphere, which then has an additional 0.5 $\left[cm\right]$ thick layer of graphite pressed around it, to form a 3.0 $\left[cm\right]$ radius pebble - around the size of a billiard ball.  The pebbles would undergo a six-pass cycle to reach a target end burnup of 92,000 $\left[\frac{MWd}{tU}\right]$ \cite{venter_pbmr_2005}.
+
+As part of the design process, multiple 400 MWth PBMR benchmarks underwent development and testing.  An early benchmark using MCNP5 simplified the fuel by assuming an equilibrium pebble enrichment of 9.6 wt\%, a common tactic.  It also uses a BCC lattice for pebble positions.  Its calculated $k_{eff}$ differed from previous MCNP4b results by as much as 1,315 pcm \cite{kim_monte_nodate}.
+
+An improved benchmark modeled the original VSOP benchmark more closely.  A full-core model used a cubic array to map TRISO particles inside the pebbles, while an HCP lattice defines pebble locations \cite{albornoz_mcnp_nodate}.  As an improvement on previous benchmarks, it adds back in the fuel regions from the VSOP model, which tracks pebbles in channels and axial layers to simulate their movement through the core.  However, it does simplify these layers, see Figure \ref{fig:fuel-regions}, below:
+
+\input{fig-fuel-regions}
+
+To simplify, the different pebble burnups in each region are averaged.  This study also investigated the effects of different pebble packing arrangements, but rather than use a full-core, a representative one-meter cube of pebbles defines a reference model.  The study tested random, HCP, BCC, and FCC at packing fractions of 0.542 and 0.61.  It found that across identical packing fractions, differences in reactivity were small, though $k_{eff}$ values differed by several standard deviations \cite{albornoz_mcnp_nodate}.
+
+An additional work performed criticality and burnup calculations using MCNP5 and MONTEBURNS 2.0.  It, like many other pebble-bed models, uses an averaged 9.6\% enriched fuel to simulate an equilibrium core \cite{noauthor_criticality_2011}.  It tested three pebble arrangements:  a BCC lattice with a packing fraction of 0.68, a random arrangement with a packing fraction of 0.61, and a simple cubic (SC) lattice with a packing fraction of 0.52.  The initial $k_{eff}$ were similar: 1.2395, 1.2357, and 1.2223, respectively.  However, the effective full power days (EFPDs) and end of life burnup required to reach an end $k_{eff}$  of 1.02 differed considerably.  BCC required 1200 EFPDs and ended on 99,000 $\frac{MWD}{T}$, random ended on 1000 EFPDs and a burnup of 92,000 $\frac{MWD}{T}$, and the SC lattice required 800 EFPDs and achieved a final burnup of 86,000 $\frac{MWD}{T}$ \cite{noauthor_criticality_2011}.  However, for the random pebble arrangement, which was used to validate the model, the disagreement in excess reactivity was approximately 14\%.
+
+A study using VSOP focused on possible power peaking and the formation of hot spots.  To test hot spots forming, a mass of fresh pebbles were purposefully introduced in the fuel region corresponding to the peak power.  Even for a very large cluster of fresh pebbles, maximum fuel power only increased by 16\%.  However, the volumetric power density increased to 18.66 from 11.32 $\frac{MW}{m^3}$ \cite{reitsma_investigation_2005}.  Of note, this scenario is highly unlikely - the region of highest power is three meters into the core, by which point fresh pebbles would have been burned slightly.  This is in addition to the already accidental loading of over one thousand fresh pebbles at once.
 
 \subsection{Next Generation Nuclear Plant (NGNP)}
 
@@ -53,3 +65,14 @@ Based on experience from the PBMR project, the X-energy Xe-100 is a 200 MWt HTGR
 The Xe-100 uses approximately 220,000 pebbles in a six-pass cycle, and fuel pebbles identical to the ones intended for the PBMR \cite{harlan_x-energy_2018}.  However, while the number of passes is unchanged, the target end burnup for the pebbles is higher, at 160,000 $\left[\frac{MWd}{tU}\right]+$ \cite{agnihotri_intrinsically_2017}.  Another key difference from the PBMR beyond size is the lack of central reflector.
 
 While the Xe-100 is not built, there have been studies conducted by ORNL providing data on the production and material properties of the PBMR-type fuel pebble.
+
+\subsection{HTR-10}
+
+The HTR-10 is a 10 MW, HTGR model.  Multiple studies exist examining the effects of pebble and TRISO arrangement on the HTR model.  These studies primarily work with the Reactor Monte Carlo (RMC) or MCNP5 programs.  A base benchmark study created the HTR-10 in MCNP.  Pebbles contained 8335 TRISO particles on average, dispersed in a cubic lattice.  Pebbles, meanwhile, are in a BCC arrangement, such that F/M ratios and void fractions stay constant \cite{kim_monte_2005}.
+
+A later study used RMC to study the explicit modeling of the random nature of both the pebbles and particles in the core, a 'double heterogeneity' \cite{ she_explicit_nodate}.  The Random Sequential Addition (RSA) method was used to distribute the TRISO particles within the pebbles (the packing fraction was less than 30\%, the maximum RSA can achieve).  The Discrete Element Method (DEM) dispersed pebbles.  To simplify the model, it assumed that all pebbles have identical TRISO dispersal patterns.  Testing showed this caused little ($\sigma$ less than 0.00014) error between this simplification and a model using different TRISO arrangements in each pebble.  The RMC model had good agreement with VSOP HTR-10 simulations \cite{ she_explicit_nodate}.
+
+Other work with the HTR-10 introduces a new method of explicit random particle dispersion for use in RMC, called the Random Universe Geometry method (RUG).  RUG improves on RSA by allowing a higher particle packing fraction, and on the DEM by being faster and simpler to implement \cite{liu_random_2018}.  Whenever a particle enters a cell that is stochastic, the algorithm randomly samples from a list of possible materials, and determines the contents of the cell mid-transport.  The RUG method has good agreement with preliminary testing using HTR-10 benchmarks \cite{liu_random_2018}.
+
+
+
